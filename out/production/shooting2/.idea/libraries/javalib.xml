@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="javalib">
+    <CLASSES>
+      <root url="file://$USER_HOME$/CS61B/CS61B/library-sp18-d39149194a077373f18e2f43a2a691df1306ee0e/javalib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/CS61B/CS61B/library-sp18-d39149194a077373f18e2f43a2a691df1306ee0e/javalib" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/CS61B/CS61B/library-sp18-d39149194a077373f18e2f43a2a691df1306ee0e/javalib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/CS61B/CS61B/library-sp18-d39149194a077373f18e2f43a2a691df1306ee0e/javalib" recursive="false" type="SOURCES" />
+  </library>
+</component>
