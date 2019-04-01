@@ -73,8 +73,12 @@ public class Game {
                 Agent [] agents = new Agent[numOfAgents];
                 agents[0] = new Player(map);
                 for(int i = 1; i < numOfAgents; ++i) {
-                    agents[i] = new RandomAgent(map, i);
+                    agents[i] = new ApproximateQAgent(map, i);
                 }
+                for (int i = 0; i < numOfAgents; ++i) {
+                    agents[i].initialPosition(i);
+                }
+
                 GameState state = new GameState(map, agents);
                 Controller c = new Controller(hud, state);
 

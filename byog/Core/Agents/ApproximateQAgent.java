@@ -34,13 +34,21 @@ public class ApproximateQAgent extends Bot implements Serializable {
         }
         agent.delay = this.delay;
         agent.setGun(new Gun(this.gun, map));
+        agent.x = this.x;
+        agent.y = this.y;
+        agent.health = this.health;
+        agent.direction= this.direction;
+        agent.health = this.health;
+        agent.alternate = this.alternate;
+        agent.agentIndex = this.agentIndex;
+        agent.isAlive = this.isAlive;
         return agent;
     }
 
     @Override
     public char nextAction(GameState state) {
         if(delay == 0) {
-            delay = 10;
+            delay = 20;
             char action = getAction(state);
             return action;
         }

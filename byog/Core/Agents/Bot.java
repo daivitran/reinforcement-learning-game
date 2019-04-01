@@ -12,7 +12,6 @@ public class Bot extends Agent implements Serializable {
         this.map = map;
         this.agentIndex = agentIndex;
         this.tetile = Tileset.MOUNTAIN;
-        initialPosition(agentIndex);
     }
 
     public Bot() {

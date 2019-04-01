@@ -11,7 +11,21 @@ public class Player extends Agent implements Serializable {
         this.map = map;
         this.agentIndex = 0;
         this.tetile = Tileset.PLAYER;
-        initialPosition(0);
+    }
+
+    @Override
+    public Player clone(TETile[][] map) {
+        Player player = new Player(map);
+        player.setGun(new Gun(this.gun, map));
+        player.x = this.x;
+        player.y = this.y;
+        player.health = this.health;
+        player.direction= this.direction;
+        player.health = this.health;
+        player.alternate = this.alternate;
+        player.agentIndex = this.agentIndex;
+        player.isAlive = this.isAlive;
+        return player;
     }
 
     public char [] getLegalActions() {

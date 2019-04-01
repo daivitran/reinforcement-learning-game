@@ -138,7 +138,7 @@ public class Agent implements Serializable {
 
     protected String shoot() {
         gun.shoot(direction);
-        StdAudio.play("/byog/Soundtrack/laser.wav");
+        //StdAudio.play("/byog/Soundtrack/laser.wav");
         updateBullets();
         return "Pow Pow";
     }
@@ -188,9 +188,6 @@ public class Agent implements Serializable {
             while(map[width][height] != Tileset.FLOOR) {
                 ++width;
                 ++height;
-                if (width > map.length || height > map[0].length) {
-                    break;
-                }
             }
         } else if (agentIndex == 1) {
             width = 0;
@@ -198,9 +195,6 @@ public class Agent implements Serializable {
             while(map[width][height] != Tileset.FLOOR) {
                 ++width;
                 --height;
-                if (width > map.length || height < 0) {
-                    break;
-                }
             }
         } else if (agentIndex == 2) {
             width = map.length - 1;
@@ -208,9 +202,6 @@ public class Agent implements Serializable {
             while(map[width][height] != Tileset.FLOOR) {
                 --width;
                 --height;
-                if (width < 0 || height < 0) {
-                    break;
-                }
             }
 
         } else if (agentIndex == 3) {
@@ -219,9 +210,6 @@ public class Agent implements Serializable {
             while(map[width][height] != Tileset.FLOOR) {
                 --width;
                 ++height;
-                if (width < 0 || height > map[0].length) {
-                    break;
-                }
             }
         }
         x = width;

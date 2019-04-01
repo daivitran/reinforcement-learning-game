@@ -21,23 +21,27 @@ public class RandomAgent extends Bot implements Serializable {
         RandomAgent agent = new RandomAgent(map, agentIndex);
         agent.delay = this.delay;
         agent.setGun(new Gun(this.gun, map));
+        agent.x = this.x;
+        agent.y = this.y;
+        agent.health = this.health;
+        agent.direction= this.direction;
+        agent.health = this.health;
+        agent.alternate = this.alternate;
+        agent.agentIndex = this.agentIndex;
+        agent.isAlive = this.isAlive;
+        agent.r = this.r;
         return agent;
     }
 
     @Override
     public char nextAction(GameState state) {
         if(delay == 0) {
-            delay = 10;
+            delay = 20;
             if (isAlive == 0) {
                 return '!';
             }
             char[] legalActs = getLegalActions();
-            System.out.println("Actions: ");
-            for(int i = 0; i < legalActs.length; ++i) {
-                System.out.print(legalActs[i] + " ");
-            }
-            System.out.println();
-            int actionIndex = RandomUtils.uniform(r, 0, legalActs.length);
+            int actionIndex = r.nextInt(legalActs.length);
             return legalActs[actionIndex];
         }
         else {
