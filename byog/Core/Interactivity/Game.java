@@ -2,6 +2,7 @@ package byog.Core.Interactivity;
 
 import byog.Core.Agents.*;
 
+import byog.Core.Environment.GameState;
 import byog.Core.WorldGenerator.MapGenerator;
 import byog.TileEngine.TETile;
 
@@ -25,6 +26,7 @@ import java.lang.Character;
 public class Game {
     private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
+    private boolean render = true;
 
     public Game() {
         StdDraw.setCanvasSize(WIDTH * 16, HEIGHT * 16);
@@ -37,6 +39,10 @@ public class Game {
 
         StdDraw.clear(Color.BLACK);
         StdDraw.enableDoubleBuffering();
+    }
+
+    public void muteGraphics() {
+        render = false;
     }
 
     public void playWithKeyboard() {

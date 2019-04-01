@@ -1,10 +1,10 @@
 package byog.Core.Agents;
 
+import byog.Core.Environment.GameState;
 import byog.Core.Interactivity.Gun;
 import byog.Core.WorldGenerator.Position;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
-import edu.princeton.cs.introcs.StdAudio;
 
 import java.io.Serializable;
 
@@ -147,7 +147,7 @@ public class Agent implements Serializable {
         alternate = (alternate + 1) % 3;
     }
 
-    protected void updateBullets() {
+    public void updateBullets() {
         gun.updateAll();
     }
 
@@ -182,7 +182,7 @@ public class Agent implements Serializable {
     public void initialPosition(int agentIndex) {
         int width = 0;
         int height = 0;
-        if (agentIndex == 0) {
+        if (agentIndex == 0 || agentIndex == 4) {
             width = 0;
             height = 0;
             while(map[width][height] != Tileset.FLOOR) {

@@ -1,5 +1,6 @@
 package byog.Core.Agents;
 
+import byog.Core.Environment.GameState;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 

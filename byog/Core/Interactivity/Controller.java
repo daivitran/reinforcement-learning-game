@@ -1,9 +1,6 @@
 package byog.Core.Interactivity;
 
-import byog.Core.Agents.Agent;
-import byog.Core.Agents.Bot;
-import byog.Core.Agents.GameState;
-import byog.Core.Agents.Player;
+import byog.Core.Environment.GameState;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import edu.princeton.cs.introcs.StdDraw;

@@ -1,13 +1,11 @@
 package byog.Core.Agents;
 
+import byog.Core.Environment.GameState;
 import byog.Core.Interactivity.Gun;
-import byog.Core.RandomUtils;
 import byog.TileEngine.TETile;
 
 import java.io.Serializable;
 import java.util.Random;
-
-import static byog.TileEngine.TETile.copyOf;
 
 public class RandomAgent extends Bot implements Serializable {
     private Random r;

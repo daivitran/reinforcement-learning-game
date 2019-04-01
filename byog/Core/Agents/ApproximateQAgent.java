@@ -1,21 +1,24 @@
 package byog.Core.Agents;
 
+import byog.Core.Environment.FeatureExtractor;
+import byog.Core.Environment.GameState;
 import byog.Core.Interactivity.Gun;
 import byog.TileEngine.TETile;
 
 import java.io.Serializable;
 
-import static byog.TileEngine.TETile.copyOf;
-
 public class ApproximateQAgent extends Bot implements Serializable {
     public static final double DISCOUNT = 0.1;
     public static final double ALPHA = 0.1;
+    private int reward;
+
     private double[] weights = new double[FeatureExtractor.numOfFeatures];
     public ApproximateQAgent(TETile[][] map, int agentIndex) {
         super(map, agentIndex);
         for(int i = 1; i <= 5; ++i) {
             weights[i-1] = 0.1 * i;
         }
+        reward = 0;
     }
 
     public ApproximateQAgent(ApproximateQAgent other) {
@@ -42,6 +45,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         agent.alternate = this.alternate;
         agent.agentIndex = this.agentIndex;
         agent.isAlive = this.isAlive;
+        agent.reward = this.reward;
         return agent;
     }
 
@@ -116,5 +120,19 @@ public class ApproximateQAgent extends Bot implements Serializable {
             value = Math.max(value, getQValue(state, action));
         }
         return value;
+    }
+
+    /****************************************************************************************
+    This function is called by Environment to inform that the agent has observed a transition
+     ****************************************************************************************/
+    public void observeTransition(GameState lastState, char lastAction, GameState thisState, int deltaReward) {
+        System.out.println("Observed a transition");
+        reward += deltaReward;
+        update(lastState, lastAction, thisState, deltaReward);
+    }
+
+    public void terminated() {
+        System.out.println("Agent " + agentIndex + " has finished the episode");
+        System.out.println("This episode reward is " + reward);
     }
 }
