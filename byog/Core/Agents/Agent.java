@@ -159,7 +159,7 @@ public class Agent implements Serializable {
         if(map[x][y] == Tileset.FLOWER) {
             --health;
         }
-        if(health == 0) {
+        if(health <= 0) {
             isAlive = 0;
             map[x][y] = Tileset.FLOOR;
         }
@@ -214,7 +214,7 @@ public class Agent implements Serializable {
         }
         x = width;
         y = height;
-        System.out.println(x + ", " + y);
+//        System.out.println(x + ", " + y);
         map[x][y] = this.tetile;
         this.gun = new Gun(x, y, this.map);
         direction = 2;

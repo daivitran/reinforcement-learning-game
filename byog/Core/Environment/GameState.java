@@ -19,6 +19,7 @@ public class GameState implements Serializable {
         this.map = copyOf(g.map);
         Agent [] newAgents = new Agent[g.agents.length];
         for(int i = 0; i < g.agents.length; ++i) {
+            if(g.agents[i] == null) { continue; }
             Agent agent = g.agents[i].clone(this.map);
             newAgents[i] = agent;
         }
@@ -81,7 +82,7 @@ public class GameState implements Serializable {
         Position botPos = agents[agentIndex].getPos();
         int x = botPos.x;
         int y = botPos.y;
-        System.out.println("StartBullet");
+//        System.out.println("StartBullet");
         while(map[x][y] != Tileset.WALL) {
             ++x;
             if(map[x][y] == Tileset.FLOWER) {
@@ -111,7 +112,7 @@ public class GameState implements Serializable {
                 return 1;
             }
         }
-        System.out.println("EndBullet");
+//        System.out.println("EndBullet");
         return 0;
     }
 
@@ -122,11 +123,22 @@ public class GameState implements Serializable {
         return nextState;
     }
 
+    public boolean isAlive(int agentIndex) {
+        return agents[agentIndex].checkAlive() == 1;
+    }
 
     public char nextAction(int agentIndex) {
         return agents[agentIndex].nextAction(this);
     }
 
+    public int getAliveAgents() {
+        int result = 0;
+        for(int i = 0; i < agents.length; ++i) {
+            if(agents[i] == null) { continue; }
+            result += agents[i].checkAlive();
+        }
+        return result;
+    }
 
     public boolean isTerminal() {
         int result = 0;
@@ -171,7 +183,8 @@ public class GameState implements Serializable {
         for(int i = 0; i < agents.length; ++i) {
             if(i == agentIndex || agents[i] == null) { continue; }
             for(int j = 0; j < bulletsPos.length; ++j) {
-                if(agents[i].getPos().equals(bulletsPos[i])) {
+                if(bulletsPos[j] == null) { continue; }
+                if(agents[i].getPos().equals(bulletsPos[j])) {
                     switch (getHealth(i)) {
                         case 5: {
                             result += 10;

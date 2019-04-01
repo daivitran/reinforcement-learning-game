@@ -63,7 +63,7 @@ public class MapGenerator {
         fillNothing(world);
         fillFloor(world);
         fillWall(world);
-        pickExitDoor(world);
+//        pickExitDoor(world);
     }
 
     /* Fill the world with nothing.

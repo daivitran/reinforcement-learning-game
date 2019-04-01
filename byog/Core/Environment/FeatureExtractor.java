@@ -15,14 +15,14 @@ public class FeatureExtractor implements Serializable {
 
     public static void populate(double[] features, GameState state, char action, int agentIndex) {
         for (int i = 0; i < numOfFeatures; ++i) {
-            System.out.println("Start: " + i);
+//            System.out.println("Start: " + i);
             double feature = 0.0;
 
             GameState nextState = state.getNextState(agentIndex, action);
 
             if (i == 0) {
                 // Opposite bot's health
-                feature = nextState.getHealth((agentIndex + 1) % 2);
+                feature = nextState.getHealth((agentIndex+1) % 4 +1);
             } else if (i == 1) {
                 // bot's health
                 feature = nextState.getHealth(agentIndex);
@@ -56,13 +56,13 @@ public class FeatureExtractor implements Serializable {
 
             } else if (i == 4) {
                 // literally
-                System.out.println("Here");
+//                System.out.println("Here");
                 feature = nextState.isBulletComingToBot(agentIndex);
             }
 
             features[i] = feature;
 
-            System.out.println("End: " + i);
+//            System.out.println("End: " + i);
         }
     }
 }

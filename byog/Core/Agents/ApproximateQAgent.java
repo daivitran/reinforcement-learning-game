@@ -6,11 +6,14 @@ import byog.Core.Interactivity.Gun;
 import byog.TileEngine.TETile;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class ApproximateQAgent extends Bot implements Serializable {
     public static final double DISCOUNT = 0.1;
     public static final double ALPHA = 0.1;
+    private int iter = 100;
     private int reward;
+    private Random r;
 
     private double[] weights = new double[FeatureExtractor.numOfFeatures];
     public ApproximateQAgent(TETile[][] map, int agentIndex) {
@@ -19,6 +22,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
             weights[i-1] = 0.1 * i;
         }
         reward = 0;
+        r = new Random(32431242);
     }
 
     public ApproximateQAgent(ApproximateQAgent other) {
@@ -46,6 +50,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         agent.agentIndex = this.agentIndex;
         agent.isAlive = this.isAlive;
         agent.reward = this.reward;
+        agent.r = this.r;
         return agent;
     }
 
@@ -66,6 +71,11 @@ public class ApproximateQAgent extends Bot implements Serializable {
         // May handle exploration over here !
         if(isAlive == 0) {
             return '!';
+        }
+        if(iter > 10) {
+            char[] legalActs = getLegalActions();
+            int actionIndex = r.nextInt(legalActs.length);
+            return legalActs[actionIndex];
         }
         char action = getPolicy(state);
         return action;
@@ -126,13 +136,17 @@ public class ApproximateQAgent extends Bot implements Serializable {
     This function is called by Environment to inform that the agent has observed a transition
      ****************************************************************************************/
     public void observeTransition(GameState lastState, char lastAction, GameState thisState, int deltaReward) {
-        System.out.println("Observed a transition");
-        reward += deltaReward;
+//        System.out.println("Observed a transition");
+        this.reward += deltaReward;
         update(lastState, lastAction, thisState, deltaReward);
     }
 
     public void terminated() {
         System.out.println("Agent " + agentIndex + " has finished the episode");
         System.out.println("This episode reward is " + reward);
+    }
+
+    public void decreaseIter() {
+        --iter;
     }
 }

@@ -27,6 +27,7 @@ public class Game {
     private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
     private boolean render = true;
+    private Agent [] agents;
 
     public Game() {
         StdDraw.setCanvasSize(WIDTH * 16, HEIGHT * 16);
@@ -41,6 +42,11 @@ public class Game {
         StdDraw.enableDoubleBuffering();
     }
 
+    public Game(Agent [] agents) {
+        this();
+        this.agents = agents;
+    }
+
     public void muteGraphics() {
         render = false;
     }
@@ -48,7 +54,7 @@ public class Game {
     public void playWithKeyboard() {
         String userOption = "";
 
-        StdAudio.loop("/byog/Soundtrack/menu.wav");
+//        StdAudio.loop("/byog/Soundtrack/menu.wav");
 
         while (!userOption.toLowerCase().equals("q")) {
             drawMenu("", "");
@@ -75,16 +81,18 @@ public class Game {
                 TETile[][] map= new TETile[WIDTH][HEIGHT];
                 m.generateWorld(map);
                 HUD hud = new HUD(map);
-                int numOfAgents = 4;
-                Agent [] agents = new Agent[numOfAgents];
-                agents[0] = new Player(map);
-                for(int i = 1; i < numOfAgents; ++i) {
-                    agents[i] = new ApproximateQAgent(map, i);
-                }
-                for (int i = 0; i < numOfAgents; ++i) {
-                    agents[i].initialPosition(i);
-                }
 
+                if(agents == null) {
+                    int numOfAgents = 4;
+                    Agent[] agents = new Agent[numOfAgents];
+                    agents[0] = new Player(map);
+                    for (int i = 1; i < numOfAgents; ++i) {
+                        agents[i] = new ApproximateQAgent(map, i);
+                    }
+                    for (int i = 0; i < numOfAgents; ++i) {
+                        agents[i].initialPosition(i);
+                    }
+                }
                 GameState state = new GameState(map, agents);
                 Controller c = new Controller(hud, state);
 
