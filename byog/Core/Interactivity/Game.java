@@ -123,7 +123,6 @@ public class Game {
                         drawPostGame("IOException is caught ! Sorry for your inconvenience.");
                     }
                 } else if (c.isVictory()){
-                    System.out.println(234);
                     drawPostGame("Victory !");
                 } else {
                     drawPostGame("Game Over !");

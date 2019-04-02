@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Train {
     private Agent [] agents;
-    private Random r = new Random(431234321);
+    private Random r = new Random(453421);
     private int numOfEpisode;
 
     public Train(int numOfEpisode) {
@@ -48,7 +48,9 @@ public class Train {
             }
 
             Environment env = new Environment(map, agents);
-            env.display();
+//            if(i == 302) {
+//              env.display();
+//            }
             env.runEpisode();
 
             System.out.println("Finished episode " + i + ".\n");
@@ -59,10 +61,10 @@ public class Train {
     }
 
     public static void main(String args []) {
-        Train t = new Train(10);
+        Train t = new Train(100);
         t.train();
-//        Game g = new Game(t.agents);
-//        g.playWithKeyboard();
+        Game g = new Game(t.agents);
+        g.playWithKeyboard();
         System.exit(0);
     }
 }

@@ -7,6 +7,7 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Agent implements Serializable {
 
@@ -158,6 +159,7 @@ public class Agent implements Serializable {
     public void checkGotShot() {
         if(map[x][y] == Tileset.FLOWER) {
             --health;
+            map[x][y] = tetile;
         }
         if(health <= 0) {
             isAlive = 0;
@@ -180,37 +182,13 @@ public class Agent implements Serializable {
     public int checkAlive() { return isAlive; }
 
     public void initialPosition(int agentIndex) {
+        Random r = new Random(534213);
+
         int width = 0;
         int height = 0;
-        if (agentIndex == 0 || agentIndex == 4) {
-            width = 0;
-            height = 0;
-            while(map[width][height] != Tileset.FLOOR) {
-                ++width;
-                ++height;
-            }
-        } else if (agentIndex == 1) {
-            width = 0;
-            height = map[0].length - 1;
-            while(map[width][height] != Tileset.FLOOR) {
-                ++width;
-                --height;
-            }
-        } else if (agentIndex == 2) {
-            width = map.length - 1;
-            height = map[0].length - 1;
-            while(map[width][height] != Tileset.FLOOR) {
-                --width;
-                --height;
-            }
-
-        } else if (agentIndex == 3) {
-            width = map.length - 1;
-            height = 0;
-            while(map[width][height] != Tileset.FLOOR) {
-                --width;
-                ++height;
-            }
+        while(map[width][height] != Tileset.FLOOR) {
+            width = r.nextInt(map.length);
+            height = r.nextInt(map[0].length);
         }
         x = width;
         y = height;

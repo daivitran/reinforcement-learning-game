@@ -144,7 +144,7 @@ public class GameState implements Serializable {
             for(int i = 1; i < agents.length; ++i) {
                 result += agents[i].checkAlive();
             }
-            return result == 1;
+            return result == 1 || result == 0;
         }
         else {
             for(int i = 1; i < agents.length; ++i) {

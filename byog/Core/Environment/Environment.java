@@ -55,8 +55,8 @@ public class Environment {
             }
         }
 
-        for(int j = 1; j < numOfAgents; ++j) {
-            ((ApproximateQAgent) thisState.getAgent(j)).terminated();
+        for(int j = 0; j < numOfAgents; ++j) {
+            ((ApproximateQAgent) thisState.getAgent(j + 1)).terminated();
         }
     }
 

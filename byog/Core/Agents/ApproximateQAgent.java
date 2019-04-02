@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class ApproximateQAgent extends Bot implements Serializable {
-    public static final double DISCOUNT = 0.1;
-    public static final double ALPHA = 0.1;
-    private int iter = 1000;
-    private int reward = 0;
-    private boolean interact;
+    public static double DISCOUNT = 0.1;
+    public static double ALPHA = 0.1;
+    private int iter = 10000;
+    private double reward = 0;
+    private boolean interact = false;
     private Random r;
 
     private double[] weights = new double[FeatureExtractor.numOfFeatures];
@@ -53,6 +53,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         agent.iter = this.iter;
         int next = r.nextInt();
         agent.r = new Random(next);
+        agent.interact = this.interact;
         return agent;
     }
 
@@ -82,6 +83,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         if(iter == 9) {
             System.out.println("Agent " + agentIndex + " is done with training.");
         }
+        System.out.println("Agent " + agentIndex + " is in interactive mode.");
         char action = getPolicy(state);
         return action;
     }
@@ -147,8 +149,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
     }
 
     public void terminated() {
-        System.out.println("Agent " + agentIndex + " has finished the episode");
-        System.out.println("This episode reward is " + this.reward);
+        System.out.println("Agent " + agentIndex + ": " + reward);
     }
 
     public void decreaseIter() {
@@ -156,6 +157,8 @@ public class ApproximateQAgent extends Bot implements Serializable {
     }
 
     public void interact() {
+        DISCOUNT = 0;
+        ALPHA = 0;
         interact = true;
     }
 
