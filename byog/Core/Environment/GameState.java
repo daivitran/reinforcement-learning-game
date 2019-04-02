@@ -178,7 +178,7 @@ public class GameState implements Serializable {
 
     public int getThisStateReward(int agentIndex) {
         int result = -1;
-        Position agent = getPosition(agentIndex);
+        Position agentPos = getPosition(agentIndex);
         Position [] bulletsPos = getBulletPosition(agentIndex);
         for(int i = 0; i < agents.length; ++i) {
             if(i == agentIndex || agents[i] == null) { continue; }
@@ -210,7 +210,7 @@ public class GameState implements Serializable {
                 }
             }
         }
-        if(map[agent.x][agent.y] == Tileset.FLOWER) {
+        if(map[agentPos.x][agentPos.y] == Tileset.FLOWER) {
             switch (getHealth(agentIndex)) {
                 case 5: {
                     result -= 10;

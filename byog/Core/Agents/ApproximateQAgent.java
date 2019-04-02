@@ -13,6 +13,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
     public static final double ALPHA = 0.1;
     private int iter = 100;
     private int reward;
+    private boolean interact;
     private Random r;
 
     private double[] weights = new double[FeatureExtractor.numOfFeatures];
@@ -50,7 +51,8 @@ public class ApproximateQAgent extends Bot implements Serializable {
         agent.agentIndex = this.agentIndex;
         agent.isAlive = this.isAlive;
         agent.reward = this.reward;
-        agent.r = this.r;
+        int next = r.nextInt();
+        agent.r = new Random(next);
         return agent;
     }
 
@@ -72,7 +74,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         if(isAlive == 0) {
             return '!';
         }
-        if(iter > 10) {
+        if(iter > 10 && !interact) {
             char[] legalActs = getLegalActions();
             int actionIndex = r.nextInt(legalActs.length);
             return legalActs[actionIndex];
@@ -148,5 +150,9 @@ public class ApproximateQAgent extends Bot implements Serializable {
 
     public void decreaseIter() {
         --iter;
+    }
+
+    public void interact() {
+        interact = true;
     }
 }

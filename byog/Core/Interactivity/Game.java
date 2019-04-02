@@ -82,18 +82,28 @@ public class Game {
                 m.generateWorld(map);
                 HUD hud = new HUD(map);
 
-                if(agents == null) {
-                    int numOfAgents = 4;
-                    Agent[] agents = new Agent[numOfAgents];
-                    agents[0] = new Player(map);
+                int numOfAgents = 4;
+                Agent[] agents = new Agent[numOfAgents];
+                agents[0] = new Player(map);
+
+                if(this.agents == null) {
                     for (int i = 1; i < numOfAgents; ++i) {
                         agents[i] = new ApproximateQAgent(map, i);
                     }
-                    for (int i = 0; i < numOfAgents; ++i) {
-                        agents[i].initialPosition(i);
+                } else {
+                    for(int i = 1; i < numOfAgents; ++i) {
+                        agents[i] = this.agents[i];
+                        agents[i].setMap(map);
+                        ((ApproximateQAgent) agents[i]).interact();
                     }
                 }
-                GameState state = new GameState(map, agents);
+
+                this.agents = agents;
+                for (int i = 0; i < numOfAgents; ++i) {
+                    this.agents[i].initialPosition(i);
+                }
+
+                GameState state = new GameState(map, this.agents);
                 Controller c = new Controller(hud, state);
 
                 boolean wantToSaved = c.render();

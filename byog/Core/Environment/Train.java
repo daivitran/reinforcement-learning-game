@@ -2,6 +2,7 @@ package byog.Core.Environment;
 
 import byog.Core.Agents.Agent;
 import byog.Core.Agents.ApproximateQAgent;
+import byog.Core.Agents.Player;
 import byog.Core.Interactivity.Game;
 import byog.Core.WorldGenerator.MapGenerator;
 import byog.TileEngine.TETile;
@@ -64,7 +65,6 @@ public class Train {
     public static void main(String args []) {
         Train t = new Train(3);
         t.train();
-
         Game g = new Game(t.agents);
         g.playWithKeyboard();
     }
