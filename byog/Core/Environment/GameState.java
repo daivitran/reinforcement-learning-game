@@ -12,7 +12,6 @@ import static byog.TileEngine.TETile.copyOf;
 public class GameState implements Serializable {
     private Agent[] agents;
     private TETile [][] map;
-    private int score;
     private static int BULLETDELAY = 8;
 
     public GameState(GameState g) {
@@ -27,7 +26,6 @@ public class GameState implements Serializable {
     }
 
     public GameState(TETile [][] map, Agent [] agents) {
-        this.score = 0;
         this.map = map;
         this.agents = agents;
     }
@@ -176,8 +174,8 @@ public class GameState implements Serializable {
         }
     }
 
-    public int getThisStateReward(int agentIndex) {
-        int result = -1;
+    public double getThisStateReward(int agentIndex) {
+        double result = -0.2;
         Position agentPos = getPosition(agentIndex);
         Position [] bulletsPos = getBulletPosition(agentIndex);
         for(int i = 0; i < agents.length; ++i) {

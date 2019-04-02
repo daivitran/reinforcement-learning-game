@@ -11,8 +11,8 @@ import java.util.Random;
 public class ApproximateQAgent extends Bot implements Serializable {
     public static final double DISCOUNT = 0.1;
     public static final double ALPHA = 0.1;
-    private int iter = 100;
-    private int reward;
+    private int iter = 1000;
+    private int reward = 0;
     private boolean interact;
     private Random r;
 
@@ -22,7 +22,6 @@ public class ApproximateQAgent extends Bot implements Serializable {
         for(int i = 1; i <= 5; ++i) {
             weights[i-1] = 0.1 * i;
         }
-        reward = 0;
         r = new Random(32431242);
     }
 
@@ -51,6 +50,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         agent.agentIndex = this.agentIndex;
         agent.isAlive = this.isAlive;
         agent.reward = this.reward;
+        agent.iter = this.iter;
         int next = r.nextInt();
         agent.r = new Random(next);
         return agent;
@@ -78,6 +78,9 @@ public class ApproximateQAgent extends Bot implements Serializable {
             char[] legalActs = getLegalActions();
             int actionIndex = r.nextInt(legalActs.length);
             return legalActs[actionIndex];
+        }
+        if(iter == 9) {
+            System.out.println("Agent " + agentIndex + " is done with training.");
         }
         char action = getPolicy(state);
         return action;
@@ -137,7 +140,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
     /****************************************************************************************
     This function is called by Environment to inform that the agent has observed a transition
      ****************************************************************************************/
-    public void observeTransition(GameState lastState, char lastAction, GameState thisState, int deltaReward) {
+    public void observeTransition(GameState lastState, char lastAction, GameState thisState, double deltaReward) {
 //        System.out.println("Observed a transition");
         this.reward += deltaReward;
         update(lastState, lastAction, thisState, deltaReward);
@@ -145,7 +148,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
 
     public void terminated() {
         System.out.println("Agent " + agentIndex + " has finished the episode");
-        System.out.println("This episode reward is " + reward);
+        System.out.println("This episode reward is " + this.reward);
     }
 
     public void decreaseIter() {

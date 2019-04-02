@@ -32,11 +32,15 @@ public class Environment {
                 char action = thisState.nextAction(i);
                 lastState = thisState;
                 thisState = thisState.getNextState(i, action);
-                int reward = thisState.getThisStateReward(i);
                 Agent agent = thisState.getAgent(i);
                 if(!(action == '!')) {
+                    double reward = thisState.getThisStateReward(i);
                     ((ApproximateQAgent) agent).observeTransition(lastState, action, thisState, reward);
                     ((ApproximateQAgent) agent).decreaseIter();
+//                    if (reward > 0) {
+//                        System.out.println("Reward: " + reward);
+//                    }
+
 //                    doneAction = true;
 //                    System.out.println("Agent " + i + " turn:");
 //                    System.out.println("Action of agent " + i + ": " + action);

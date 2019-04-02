@@ -48,7 +48,7 @@ public class Train {
             }
 
             Environment env = new Environment(map, agents);
-//            env.display();
+            env.display();
             env.runEpisode();
 
             for(int j = 1; j < agents.length; ++j) {
@@ -63,9 +63,10 @@ public class Train {
     }
 
     public static void main(String args []) {
-        Train t = new Train(3);
+        Train t = new Train(10);
         t.train();
-        Game g = new Game(t.agents);
-        g.playWithKeyboard();
+//        Game g = new Game(t.agents);
+//        g.playWithKeyboard();
+        System.exit(0);
     }
 }
