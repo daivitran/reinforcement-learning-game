@@ -160,6 +160,21 @@ public class GameState implements Serializable {
         return count;
     }
 
+    public Agent getNearestAgent(int agentIndex) {
+        Agent result = null;
+        int minDistance = Integer.MAX_VALUE;
+        for(int i = 0; i < agents.length; ++i) {
+            if(agents[i] == null || i == agentIndex || agents[i].checkAlive() == 0) { continue; }
+            int distance = agents[agentIndex].getPos().distanceSquaredTo(agents[i].getPos());
+            if(distance < minDistance) {
+                minDistance = distance;
+                result = agents[i];
+            }
+        }
+
+        return result;
+    }
+
     private void update() {
         if(BULLETDELAY == 0) {
             BULLETDELAY = 8;

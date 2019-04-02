@@ -158,4 +158,8 @@ public class ApproximateQAgent extends Bot implements Serializable {
     public void interact() {
         interact = true;
     }
+
+    public void printReward() {
+        System.out.println("Agent " + agentIndex + " reward: " + reward);
+    }
 }

@@ -51,10 +51,6 @@ public class Train {
             env.display();
             env.runEpisode();
 
-            for(int j = 1; j < agents.length; ++j) {
-                ((ApproximateQAgent) agents[j]).terminated();
-            }
-
             System.out.println("Finished episode " + i + ".\n");
             ++i;
         }

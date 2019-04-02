@@ -1,5 +1,6 @@
 package byog.Core.Environment;
 
+import byog.Core.Agents.Agent;
 import byog.Core.WorldGenerator.Position;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ public class FeatureExtractor implements Serializable {
     }
 
     public static void populate(double[] features, GameState state, char action, int agentIndex) {
+        Agent nearest = null;
         for (int i = 0; i < numOfFeatures; ++i) {
 //            System.out.println("Start: " + i);
             double feature = 0.0;
@@ -21,25 +23,15 @@ public class FeatureExtractor implements Serializable {
             GameState nextState = state.getNextState(agentIndex, action);
 
             if (i == 0) {
-                // Opposite bot's health
-                feature = nextState.getHealth((agentIndex+1) % 4 +1);
+                // manhattan distance from bot the other
+                nearest = nextState.getNearestAgent(agentIndex);
+                feature = nearest.getPos().distanceSquaredTo(nextState.getAgent(agentIndex).getPos());
             } else if (i == 1) {
-                // bot's health
+                // this agent's health
                 feature = nextState.getHealth(agentIndex);
             } else if (i == 2) {
-                // manhattan distance from bot the other
-                int minDistance = Integer.MAX_VALUE;
-                Position[] otherPosition = state.getOtherPosition(agentIndex);
-                for (int j = 0; j < state.getNumOfAgents() - 1; ++j) {
-                    if (otherPosition[j] == null) {
-                        continue;
-                    }
-                    int distance = nextState.getPosition(agentIndex).distanceSquaredTo(otherPosition[j]);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                    }
-                }
-                feature = minDistance;
+                // nearest agent's health;
+                feature = nearest.getHealth();
             } else if (i == 3) {
                 // manhattan distance to nearest bullet
                 Position[] bullets = nextState.getOtherBulletPosition(agentIndex);
