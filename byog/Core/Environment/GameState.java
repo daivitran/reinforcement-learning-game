@@ -60,6 +60,10 @@ public class GameState implements Serializable {
         return bullets;
     }
 
+    public Agent [] getAgents() {
+        return agents;
+    }
+
     public Position getPosition(int agentIndex) {
         return agents[agentIndex].getPos();
     }

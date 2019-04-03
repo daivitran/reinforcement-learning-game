@@ -181,7 +181,7 @@ public class Agent implements Serializable {
 
     public int checkAlive() { return isAlive; }
 
-    public void initialPosition(int agentIndex) {
+    public void initialPosition() {
         Random r = new Random(534213);
 
         int width = 0;
@@ -193,8 +193,11 @@ public class Agent implements Serializable {
         x = width;
         y = height;
 //        System.out.println(x + ", " + y);
+        health = 5;
+        alternate = 0;
+        isAlive = 1;
         map[x][y] = this.tetile;
-        this.gun = new Gun(x, y, this.map);
+        gun = new Gun(x, y, this.map);
         direction = 2;
     }
 

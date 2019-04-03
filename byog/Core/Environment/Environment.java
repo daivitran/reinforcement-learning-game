@@ -22,11 +22,15 @@ public class Environment {
         this.thisState = new GameState(map, agents);
     }
 
+    public GameState getState() {
+        return thisState;
+    }
+
 
     public void runEpisode() {
         int numOfAgents = thisState.getNumOfAgents();
         while(!thisState.isTerminal()) {
-            boolean doneAction = false;
+//            boolean doneAction = false;
             for (int i = 1; i < numOfAgents + 1; ++i) {
                 if (!thisState.isAlive(i)) { continue; }
                 char action = thisState.nextAction(i);
@@ -55,8 +59,14 @@ public class Environment {
             }
         }
 
+        System.out.println("Agents' reward: ");
         for(int j = 0; j < numOfAgents; ++j) {
             ((ApproximateQAgent) thisState.getAgent(j + 1)).terminated();
+        }
+
+        System.out.println("Agents' weight: ");
+        for(int j = 0; j < numOfAgents; ++j) {
+            ((ApproximateQAgent) thisState.getAgent(j + 1)).printWeights();
         }
     }
 

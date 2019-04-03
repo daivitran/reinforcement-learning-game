@@ -100,10 +100,15 @@ public class Game {
 
                 this.agents = agents;
                 for (int i = 0; i < numOfAgents; ++i) {
-                    this.agents[i].initialPosition(i);
+                    this.agents[i].initialPosition();
                 }
 
                 GameState state = new GameState(map, this.agents);
+
+                for(int i = 1; i < this.agents.length; ++i) {
+                    ((ApproximateQAgent) this.agents[i]).printWeights();
+                }
+
                 Controller c = new Controller(hud, state);
 
                 boolean wantToSaved = c.render();

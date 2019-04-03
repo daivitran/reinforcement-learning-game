@@ -11,7 +11,7 @@ import java.util.Random;
 public class ApproximateQAgent extends Bot implements Serializable {
     public static double DISCOUNT = 0.1;
     public static double ALPHA = 0.1;
-    private int iter = 10000;
+    private int iter = 1000000;
     private double reward = 0;
     private boolean interact = false;
     private Random r;
@@ -83,7 +83,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         if(iter == 9) {
             System.out.println("Agent " + agentIndex + " is done with training.");
         }
-        System.out.println("Agent " + agentIndex + " is in interactive mode.");
+//        System.out.println("Agent " + agentIndex + " is in interactive mode.");
         char action = getPolicy(state);
         return action;
     }
@@ -139,6 +139,9 @@ public class ApproximateQAgent extends Bot implements Serializable {
         return value;
     }
 
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
     /****************************************************************************************
     This function is called by Environment to inform that the agent has observed a transition
      ****************************************************************************************/
@@ -164,5 +167,13 @@ public class ApproximateQAgent extends Bot implements Serializable {
 
     public void printReward() {
         System.out.println("Agent " + agentIndex + " reward: " + reward);
+    }
+
+    public void printWeights() {
+        System.out.println("Agent " + agentIndex + ": ");
+        for(int i = 0; i < weights.length; ++i) {
+            System.out.print(weights[i] + " ");
+        }
+        System.out.println();
     }
 }
