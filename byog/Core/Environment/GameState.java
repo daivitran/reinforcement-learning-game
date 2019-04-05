@@ -166,10 +166,10 @@ public class GameState implements Serializable {
 
     public Agent getNearestAgent(int agentIndex) {
         Agent result = null;
-        int minDistance = Integer.MAX_VALUE;
-        for(int i = 1; i < agents.length; ++i) {
+        double minDistance = Double.MAX_VALUE;
+        for(int i = 0; i < agents.length; ++i) {
             if(agents[i] == null || i == agentIndex || agents[i].checkAlive() == 0) { continue; }
-            int distance = agents[agentIndex].getPos().distanceSquaredTo(agents[i].getPos());
+            double distance = agents[agentIndex].getPos().distanceSquaredTo(agents[i].getPos());
             if(distance < minDistance) {
                 minDistance = distance;
                 result = agents[i];
@@ -205,7 +205,7 @@ public class GameState implements Serializable {
     }
 
     public double getThisStateReward(int agentIndex) {
-        double result = 0.2;
+        double result = -0.5;
         Position agentPos = getPosition(agentIndex);
         Position [] bulletsPos = getBulletPosition(agentIndex);
         for(int i = 0; i < agents.length; ++i) {
@@ -215,23 +215,23 @@ public class GameState implements Serializable {
                 if(agents[i].getPos().equals(bulletsPos[j])) {
                     switch (getHealth(i)) {
                         case 5: {
-                            result += 10;
-                            break;
-                        }
-                        case 4: {
                             result += 20;
                             break;
                         }
-                        case 3: {
-                            result += 30;
-                            break;
-                        }
-                        case 2: {
+                        case 4: {
                             result += 40;
                             break;
                         }
+                        case 3: {
+                            result += 60;
+                            break;
+                        }
+                        case 2: {
+                            result += 80;
+                            break;
+                        }
                         case 1: {
-                            result += 50;
+                            result += 100;
                             break;
                         }
                     }

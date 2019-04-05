@@ -29,9 +29,9 @@ public class Position {
         y = yPos;
     }
 
-    public int distanceSquaredTo(Position otherPosition) {
-        return (otherPosition.x - x) * (otherPosition.x - x)
-                + (otherPosition.y - y) * (otherPosition.y - y);
+    public double distanceSquaredTo(Position otherPosition) {
+        return Math.sqrt((otherPosition.x - x) * (otherPosition.x - x)
+                + (otherPosition.y - y) * (otherPosition.y - y));
     }
 
     public boolean equals(Position otherPosition) {

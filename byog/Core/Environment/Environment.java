@@ -40,6 +40,9 @@ public class Environment {
                 thisState = thisState.getNextState(i, action);
                 Agent agent = thisState.getAgent(i);
                 if(!(action == '!')) {
+                    if(thisState.isTerminal()) {
+                        break;
+                    }
                     double reward = thisState.getThisStateReward(i);
                     ((ApproximateQAgent) agent).observeTransition(lastState, action, thisState, reward);
 //                    if (reward > 0) {

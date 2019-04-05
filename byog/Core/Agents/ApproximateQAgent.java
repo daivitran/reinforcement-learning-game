@@ -8,9 +8,9 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class ApproximateQAgent extends Bot implements Serializable {
-    private static final double LAMBDA = -0.000002;
-    public static double DISCOUNT = 0.9;
-    public static double ALPHA = 0.1;
+    private static final double LAMBDA = -0.00002;
+    public static double DISCOUNT = 0.99;
+    public static double ALPHA = 0.0001;
     private int actionNum = 0;
     private double reward = 0;
     private boolean interact = false;
@@ -82,8 +82,8 @@ public class ApproximateQAgent extends Bot implements Serializable {
             action = legalActions[r.nextInt(legalActions.length)];
         } else {
             action = getPolicy(state);
-            System.out.println("Agent " + agentIndex + " took learned action at " + actionNum);
-            System.out.println("Action: " + action + "\n");
+//            System.out.println("Agent " + agentIndex + " took learned action at " + actionNum);
+//            System.out.println("Action: " + action + "\n");
         }
         ++actionNum;
         return action;

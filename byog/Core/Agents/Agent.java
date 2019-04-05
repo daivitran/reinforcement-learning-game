@@ -81,7 +81,8 @@ public class Agent implements Serializable {
     }
 
     protected String moveUp() {
-        if(!map[x][y + 1].equals(Tileset.WALL) && !map[x][y+1].equals(Tileset.UNLOCKED_DOOR)) {
+        if(!map[x][y + 1].equals(Tileset.WALL) && !map[x][y+1].equals(Tileset.UNLOCKED_DOOR) &&
+        !map[x][y+1].equals(Tileset.PLAYER) && !map[x][y+1].equals(Tileset.MOUNTAIN)) {
             map[x][y] = Tileset.FLOOR;
             map[x][y+1] = tetile;
             ++y;
@@ -96,7 +97,8 @@ public class Agent implements Serializable {
      * @return a String signalling that the bot is moving down.
      */
     protected String moveDown() {
-        if(!map[x][y - 1].equals(Tileset.WALL) && !map[x][y-1].equals(Tileset.UNLOCKED_DOOR)) {
+        if(!map[x][y - 1].equals(Tileset.WALL) && !map[x][y-1].equals(Tileset.UNLOCKED_DOOR) &&
+        !map[x][y-1].equals(Tileset.PLAYER) && !map[x][y-1].equals(Tileset.MOUNTAIN)) {
             map[x][y] = Tileset.FLOOR;
             map[x][y-1] = tetile;
             --y;
@@ -111,7 +113,8 @@ public class Agent implements Serializable {
      * @return a String signalling that the bot is moving left.
      */
     protected String moveLeft() {
-        if(!map[x-1][y].equals(Tileset.WALL) && !map[x-1][y].equals(Tileset.UNLOCKED_DOOR)) {
+        if(!map[x-1][y].equals(Tileset.WALL) && !map[x-1][y].equals(Tileset.UNLOCKED_DOOR) &&
+                !map[x-1][y].equals(Tileset.PLAYER) && !map[x-1][y].equals(Tileset.MOUNTAIN)) {
             map[x][y] = Tileset.FLOOR;
             map[x-1][y] = tetile;
             --x;
@@ -126,7 +129,8 @@ public class Agent implements Serializable {
      * @return a String signalling that the bot is moving right.
      */
     protected String moveRight() {
-        if(!map[x+1][y].equals(Tileset.WALL) && !map[x+1][y].equals(Tileset.UNLOCKED_DOOR)) {
+        if(!map[x+1][y].equals(Tileset.WALL) && !map[x+1][y].equals(Tileset.UNLOCKED_DOOR) &&
+                !map[x+1][y].equals(Tileset.PLAYER) && !map[x+1][y].equals(Tileset.MOUNTAIN)) {
             map[x][y] = Tileset.FLOOR;
             map[x+1][y] = tetile;
             ++x;
@@ -157,6 +161,9 @@ public class Agent implements Serializable {
     }
 
     public void checkGotShot() {
+        if(isAlive == 0) {
+            return;
+        }
         if(map[x][y] == Tileset.FLOWER) {
             --health;
             map[x][y] = tetile;

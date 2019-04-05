@@ -18,14 +18,14 @@ public class FeatureExtractor implements Serializable {
         GameState nextState = state.getNextState(agentIndex, action);
 
         // feature 1
-        Agent nearest = nextState.getNearestAgent(agentIndex);
+        Agent nearest = state.getNearestAgent(agentIndex);
         features[0] = nearest.getPos().distanceSquaredTo(nextState.getAgent(agentIndex).getPos());
         //features[0] = 1;
         // feature 2
         features[1] = nextState.getHealth(agentIndex);
 
         // feature 3
-        features[2] = (double) nextState.getTotalOtherHealth(agentIndex) / nextState.getAliveAgents();
+        features[2] = (double) nextState.getTotalOtherHealth(agentIndex) / nextState.getNumOfAgents();
 
         // feature 4
         /*
