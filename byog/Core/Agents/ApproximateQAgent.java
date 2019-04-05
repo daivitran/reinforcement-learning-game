@@ -1,6 +1,5 @@
 package byog.Core.Agents;
 
-import byog.Core.Environment.FeatureExtractor;
 import byog.Core.Environment.GameState;
 import byog.Core.Interactivity.Gun;
 import byog.TileEngine.TETile;
@@ -9,7 +8,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class ApproximateQAgent extends Bot implements Serializable {
-    private static final double LAMBDA = -0.0002;
+    private static final double LAMBDA = -0.000002;
     public static double DISCOUNT = 0.9;
     public static double ALPHA = 0.1;
     private int actionNum = 0;
@@ -20,7 +19,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
     private double[] weights = new double[FeatureExtractor.numOfFeatures];
     public ApproximateQAgent(TETile[][] map, int agentIndex) {
         super(map, agentIndex);
-        for(int i = 1; i <= 5; ++i) {
+        for(int i = 1; i <= FeatureExtractor.numOfFeatures; ++i) {
             weights[i-1] = 0.1 * i;
         }
         r = new Random(32431242);
@@ -83,8 +82,8 @@ public class ApproximateQAgent extends Bot implements Serializable {
             action = legalActions[r.nextInt(legalActions.length)];
         } else {
             action = getPolicy(state);
-//            System.out.println("Agent " + agentIndex + " took learned action at " + actionNum);
-//            System.out.println("Action: " + action + "\n");
+            System.out.println("Agent " + agentIndex + " took learned action at " + actionNum);
+            System.out.println("Action: " + action + "\n");
         }
         ++actionNum;
         return action;

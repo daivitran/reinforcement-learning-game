@@ -167,7 +167,7 @@ public class GameState implements Serializable {
     public Agent getNearestAgent(int agentIndex) {
         Agent result = null;
         int minDistance = Integer.MAX_VALUE;
-        for(int i = 0; i < agents.length; ++i) {
+        for(int i = 1; i < agents.length; ++i) {
             if(agents[i] == null || i == agentIndex || agents[i].checkAlive() == 0) { continue; }
             int distance = agents[agentIndex].getPos().distanceSquaredTo(agents[i].getPos());
             if(distance < minDistance) {
@@ -177,6 +177,17 @@ public class GameState implements Serializable {
         }
 
         return result;
+    }
+
+    public int getTotalOtherHealth(int agentIndex) {
+        int total = 0;
+        for (int i = 0; i < agents.length; ++i) {
+            if (agentIndex == i || agents[i] == null || agents[i].checkAlive() == 0) {
+                continue;
+            }
+            total += agents[i].getHealth();
+        }
+        return total;
     }
 
     private void update() {
