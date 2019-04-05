@@ -13,12 +13,14 @@ import java.util.Random;
 public class Environment {
     private GameState thisState;
     private GameState lastState;
-    boolean render = false;
+    private boolean render = false;
     private int width;
     private int height;
     private static final int TILE_SIZE = 16;
 
     public Environment(TETile [][] map, Agent[] agents) {
+        width = map.length;
+        height = map[0].length;
         this.thisState = new GameState(map, agents);
     }
 
@@ -40,7 +42,6 @@ public class Environment {
                 if(!(action == '!')) {
                     double reward = thisState.getThisStateReward(i);
                     ((ApproximateQAgent) agent).observeTransition(lastState, action, thisState, reward);
-                    ((ApproximateQAgent) agent).decreaseIter();
 //                    if (reward > 0) {
 //                        System.out.println("Reward: " + reward);
 //                    }
@@ -71,9 +72,6 @@ public class Environment {
     }
 
     public void display() {
-        TETile [][] map = thisState.getMap();
-        width = map.length;
-        height = map[0].length;
         render = true;
 
         // Draw the canvas and set scales
@@ -84,6 +82,10 @@ public class Environment {
 
         // Show the image after all have been drawn
         StdDraw.enableDoubleBuffering();
+    }
+
+    public void muteDisplay() {
+        render = false;
     }
 
     public void render(GameState state) {

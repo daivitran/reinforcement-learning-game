@@ -194,7 +194,7 @@ public class GameState implements Serializable {
     }
 
     public double getThisStateReward(int agentIndex) {
-        double result = -0.2;
+        double result = 0.2;
         Position agentPos = getPosition(agentIndex);
         Position [] bulletsPos = getBulletPosition(agentIndex);
         for(int i = 0; i < agents.length; ++i) {

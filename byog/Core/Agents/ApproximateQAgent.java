@@ -9,9 +9,10 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class ApproximateQAgent extends Bot implements Serializable {
-    public static double DISCOUNT = 0.1;
+    private static final double LAMBDA = -0.0002;
+    public static double DISCOUNT = 0.9;
     public static double ALPHA = 0.1;
-    private int iter = 1000000;
+    private int actionNum = 0;
     private double reward = 0;
     private boolean interact = false;
     private Random r;
@@ -50,7 +51,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         agent.agentIndex = this.agentIndex;
         agent.isAlive = this.isAlive;
         agent.reward = this.reward;
-        agent.iter = this.iter;
+        agent.actionNum = this.actionNum;
         int next = r.nextInt();
         agent.r = new Random(next);
         agent.interact = this.interact;
@@ -75,16 +76,17 @@ public class ApproximateQAgent extends Bot implements Serializable {
         if(isAlive == 0) {
             return '!';
         }
-        if(iter > 10 && !interact) {
-            char[] legalActs = getLegalActions();
-            int actionIndex = r.nextInt(legalActs.length);
-            return legalActs[actionIndex];
+        char action = 'p';
+        char[] legalActions = getLegalActions();
+        double exploreProb = Math.exp(LAMBDA * actionNum);
+        if (r.nextDouble() < exploreProb && !interact) {
+            action = legalActions[r.nextInt(legalActions.length)];
+        } else {
+            action = getPolicy(state);
+//            System.out.println("Agent " + agentIndex + " took learned action at " + actionNum);
+//            System.out.println("Action: " + action + "\n");
         }
-        if(iter == 9) {
-            System.out.println("Agent " + agentIndex + " is done with training.");
-        }
-//        System.out.println("Agent " + agentIndex + " is in interactive mode.");
-        char action = getPolicy(state);
+        ++actionNum;
         return action;
     }
 
@@ -95,10 +97,10 @@ public class ApproximateQAgent extends Bot implements Serializable {
     private char computeActionFromQValues(GameState state) {
         char[] legalActions = getLegalActions();
         char bestAction = 'p';
-        double bestValue = getQValue(state, legalActions[0]);
+        double bestValue = Double.MIN_VALUE;
         for (char action : legalActions) {
             double currentQValue = getQValue(state, action);
-            if (bestValue < currentQValue) {
+            if (bestValue <= currentQValue) {
                 bestValue = currentQValue;
                 bestAction = action;
             }
@@ -116,7 +118,9 @@ public class ApproximateQAgent extends Bot implements Serializable {
     }
 
     public void update(GameState state, char action, GameState nextState, double reward) {
-        double difference = reward + DISCOUNT * getValue(nextState) - getQValue(state, action);
+        double nextStateVal = getValue(nextState);
+        double qVal = getQValue(state, action);
+        double difference = reward + DISCOUNT * nextStateVal - qVal;
         double[] features = FeatureExtractor.getFeatures(state, action, agentIndex);
         for (int i = 0; i < FeatureExtractor.numOfFeatures; ++i) {
             weights[i] += ALPHA * difference * features[i];
@@ -132,7 +136,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
         if (legalActions.length == 0) {
             return 0.0;
         }
-        double value = getQValue(state, legalActions[0]);
+        double value = -Double.MAX_VALUE;
         for (char action : legalActions) {
             value = Math.max(value, getQValue(state, action));
         }
@@ -155,10 +159,6 @@ public class ApproximateQAgent extends Bot implements Serializable {
         System.out.println("Agent " + agentIndex + ": " + reward);
     }
 
-    public void decreaseIter() {
-        --iter;
-    }
-
     public void interact() {
         DISCOUNT = 0;
         ALPHA = 0;
@@ -172,7 +172,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
     public void printWeights() {
         System.out.println("Agent " + agentIndex + ": ");
         for(int i = 0; i < weights.length; ++i) {
-            System.out.print(weights[i] + " ");
+            System.out.printf("%.2f ", weights[i]);
         }
         System.out.println();
     }

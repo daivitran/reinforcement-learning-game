@@ -99,6 +99,7 @@ public class Game {
                 }
 
                 this.agents = agents;
+
                 for (int i = 0; i < numOfAgents; ++i) {
                     this.agents[i].initialPosition();
                 }

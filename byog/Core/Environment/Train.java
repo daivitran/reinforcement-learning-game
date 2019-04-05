@@ -56,8 +56,8 @@ public class Train {
             }
 
             Environment env = new Environment(map, agents);
-//            if(i == 2) {
-//                env.display();
+//            if(i == 7) {
+//            env.display();
 //            }
             env.runEpisode();
 
@@ -84,7 +84,6 @@ public class Train {
     public static void main(String args []) {
         Train t = new Train(1);
         t.train();
-
         System.out.println("Starting game with trained agents: ");
         Game g = new Game(t.agents);
         g.playWithKeyboard();
