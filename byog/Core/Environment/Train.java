@@ -56,7 +56,7 @@ public class Train {
             }
 
             Environment env = new Environment(map, agents);
-//            if(i == 12) {
+//            if(i == 99) {
 //              env.display();
 //            }
             env.runEpisode();
@@ -82,7 +82,7 @@ public class Train {
     }
 
     public static void main(String args []) {
-        Train t = new Train(100);
+        Train t = new Train(10);
         t.train();
         System.out.println("Starting game with trained agents: ");
         Game g = new Game(t.agents);

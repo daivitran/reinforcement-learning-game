@@ -122,7 +122,6 @@ public class Gun implements Serializable {
     }
 
     public void updateAll() {
-        if(count == 20) return;
         for(int i = 0; i < 20; ++i) {
             if(ammo[i] == null) {
                 continue;

@@ -148,7 +148,6 @@ public class Agent implements Serializable {
     protected String shoot() {
         gun.shoot(direction);
         //StdAudio.play("/byog/Soundtrack/laser.wav");
-        updateBullets();
         return "Pow Pow";
     }
 
@@ -172,9 +171,16 @@ public class Agent implements Serializable {
             --health;
             map[x][y] = tetile;
         }
+
         if(health <= 0) {
             isAlive = 0;
             map[x][y] = Tileset.FLOOR;
+        }
+
+        if(isAlive == 0) {
+            return;
+        } else  {
+            map[x][y] = tetile;
         }
     }
 
