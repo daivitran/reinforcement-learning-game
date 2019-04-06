@@ -2,48 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5bbfcde-bb6d-4bef-9ad0-0e470f25d984" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javalib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/byog/Core/Agents/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Agents/Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/byog/Core/Agents/ApproximateQAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Agents/ApproximateQAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/Core/Agents/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Agents/Bot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/Core/Environment/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Environment/Environment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/byog/Core/Environment/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Environment/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/byog/Core/Environment/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Environment/Train.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/Core/WorldGenerator/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/WorldGenerator/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/.idea/libraries/javalib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/.idea/libraries/javalib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/Agent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/ApproximateQAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/ApproximateQAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/Bot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/FeatureExtractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/FeatureExtractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/RandomAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Agents/RandomAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Environment/Environment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Environment/Environment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Environment/GameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Environment/GameState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Environment/Train.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Environment/Train.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Gun$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Gun$Bullet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Gun$Bullet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Gun.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Gun.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/HUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/HUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/Interactivity/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/RandomUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/RandomUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Block.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Hall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Hall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/MapGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/MapGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Position.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/Core/WorldGenerator/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/TileEngine/TERenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/TileEngine/TERenderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/TileEngine/TETile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/TileEngine/TETile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/newShoot2/byog/TileEngine/Tileset.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/newShoot2/byog/TileEngine/Tileset.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/Core/Interactivity/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Interactivity/Game.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,37 +21,37 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/byog/Core/Agents/ApproximateQAgent.java">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Interactivity/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1743">
-              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/byog/Core/Environment/Environment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="43" column="30" lean-forward="true" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+            <state relative-caret-position="-42">
+              <caret line="111" column="37" selection-start-line="111" selection-start-column="37" selection-end-line="111" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/byog/Core/Environment/Train.java">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Interactivity/Gun.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
+            <state relative-caret-position="284">
+              <caret line="66" column="47" lean-forward="true" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Agent.java">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Interactivity/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="170" column="25" lean-forward="true" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="25" />
+            <state relative-caret-position="60">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Environment/Train.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -93,8 +59,55 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/byog/Core/Environment/GameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-138">
-              <caret line="227" column="25" lean-forward="true" selection-start-line="227" selection-start-column="25" selection-end-line="227" selection-end-column="25" />
+            <state relative-caret-position="124">
+              <caret line="207" column="49" selection-start-line="207" selection-start-column="49" selection-end-line="207" selection-end-column="49" />
+              <folding>
+                <element signature="e#5869#5870#0" expanded="true" />
+                <element signature="e#5897#5898#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Bot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="74" column="9" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
+              <folding>
+                <element signature="e#2508#2509#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Agents/RandomAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Agent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1620">
+              <caret line="119" column="59" lean-forward="true" selection-start-line="119" selection-start-column="59" selection-end-line="119" selection-end-column="59" />
+              <folding>
+                <element signature="e#5612#5613#0" expanded="true" />
+                <element signature="e#5644#5645#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,17 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/byog/Core/WorldGenerator/Position.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="485">
+              <caret line="118" column="40" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -127,11 +131,14 @@
       <list>
         <option value="$PROJECT_DIR$/byog/Core/WorldGenerator/Position.java" />
         <option value="$PROJECT_DIR$/byog/Core/Environment/Environment.java" />
-        <option value="$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java" />
         <option value="$PROJECT_DIR$/byog/Core/Agents/ApproximateQAgent.java" />
-        <option value="$PROJECT_DIR$/byog/Core/Agents/Agent.java" />
+        <option value="$PROJECT_DIR$/byog/Core/Interactivity/Game.java" />
+        <option value="$PROJECT_DIR$/byog/Core/Agents/Bot.java" />
         <option value="$PROJECT_DIR$/byog/Core/Environment/GameState.java" />
+        <option value="$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java" />
         <option value="$PROJECT_DIR$/byog/Core/Environment/Train.java" />
+        <option value="$PROJECT_DIR$/byog/Core/Interactivity/Gun.java" />
+        <option value="$PROJECT_DIR$/byog/Core/Agents/Agent.java" />
       </list>
     </option>
   </component>
@@ -199,10 +206,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554506544582" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554535665911" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunDashboard">
@@ -262,7 +270,7 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Messages" weight="0.32891566" />
       <window_info anchor="bottom" id="Style Checker" />
@@ -282,9 +290,63 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="Image Layers" order="1" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.24964234" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32891566" />
+      <window_info anchor="bottom" id="Style Checker" order="4" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Debug" order="8" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>actionNum == 400</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>actionNum == 300</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>actionNum == 200</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>actionNum == 700</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>weights[i] &gt; 1000</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>weights[i] &gt; 100</expression-string>
         <language-id>JAVA</language-id>
@@ -300,50 +362,107 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/byog/Core/WorldGenerator/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
+        <state relative-caret-position="211">
           <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/byog/Core/Environment/Environment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="43" column="30" lean-forward="true" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/byog/Core/Agents/ApproximateQAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1743">
-          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+        <state relative-caret-position="270">
+          <caret line="167" column="52" selection-start-line="167" selection-start-column="52" selection-end-line="167" selection-end-column="52" />
+          <folding>
+            <element signature="e#5417#5418#0" expanded="true" />
+            <element signature="e#5446#5447#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Agent.java">
+    <entry file="file://$PROJECT_DIR$/byog/Core/Environment/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="170" column="25" lean-forward="true" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="25" />
+        <state relative-caret-position="-676">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/byog/Core/Environment/GameState.java">
+    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-138">
-          <caret line="227" column="25" lean-forward="true" selection-start-line="227" selection-start-column="25" selection-end-line="227" selection-end-column="25" />
+        <state relative-caret-position="225">
+          <caret line="74" column="9" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
+          <folding>
+            <element signature="e#2508#2509#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/RandomAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/byog/Core/Environment/Train.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
+        <state relative-caret-position="300">
+          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Interactivity/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Environment/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="207" column="49" selection-start-line="207" selection-start-column="49" selection-end-line="207" selection-end-column="49" />
+          <folding>
+            <element signature="e#5869#5870#0" expanded="true" />
+            <element signature="e#5897#5898#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/FeatureExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="118" column="40" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Interactivity/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="111" column="37" selection-start-line="111" selection-start-column="37" selection-end-line="111" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Agents/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="119" column="59" lean-forward="true" selection-start-line="119" selection-start-column="59" selection-end-line="119" selection-end-column="59" />
+          <folding>
+            <element signature="e#5612#5613#0" expanded="true" />
+            <element signature="e#5644#5645#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/byog/Core/Interactivity/Gun.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="66" column="47" lean-forward="true" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
         </state>
       </provider>
     </entry>

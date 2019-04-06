@@ -25,23 +25,38 @@ public class Bot extends Agent implements Serializable {
     }
 
     public char [] getLegalActions() {
-        int count = 2;
+        int count = 1;
+        boolean canShoot = false;
         if(!map[x][y + 1].equals(Tileset.WALL) && !map[x][y+1].equals(Tileset.UNLOCKED_DOOR)) {
             ++count;
+            canShoot = direction == 0;
         }
         if(!map[x][y - 1].equals(Tileset.WALL) && !map[x][y-1].equals(Tileset.UNLOCKED_DOOR)) {
             ++count;
+            if(!canShoot) {
+                canShoot = direction == 2;
+            }
         }
         if(!map[x-1][y].equals(Tileset.WALL) && !map[x-1][y].equals(Tileset.UNLOCKED_DOOR)) {
             ++count;
+            if(!canShoot) {
+                canShoot = direction == 3;
+            }
         }
         if(!map[x+1][y].equals(Tileset.WALL) && !map[x+1][y].equals(Tileset.UNLOCKED_DOOR)) {
             ++count;
+            if(!canShoot) {
+                canShoot = direction == 1;
+            }
         }
+        if(canShoot) { ++count; }
 
         char [] legalActs = new char [count];
         --count;
-
+        if(canShoot) {
+            legalActs[count] = 'k';
+            --count;
+        }
         if(!map[x][y + 1].equals(Tileset.WALL) && !map[x][y+1].equals(Tileset.UNLOCKED_DOOR)) {
             legalActs[count] = 'w';
             --count;
@@ -58,8 +73,6 @@ public class Bot extends Agent implements Serializable {
             legalActs[count] = 'd';
             --count;
         }
-        legalActs[count] = 'k';
-        --count;
         legalActs[count] = 'p';
 
         return legalActs;

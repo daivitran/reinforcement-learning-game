@@ -109,6 +109,7 @@ public class Game {
                 for(int i = 1; i < this.agents.length; ++i) {
                     ((ApproximateQAgent) this.agents[i]).printWeights();
                 }
+                System.out.println();
 
                 Controller c = new Controller(hud, state);
 

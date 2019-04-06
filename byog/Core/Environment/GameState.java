@@ -204,8 +204,12 @@ public class GameState implements Serializable {
         }
     }
 
+    public int getDirection(int agentIndex) {
+        return agents[agentIndex].getDirection();
+    }
+
     public double getThisStateReward(int agentIndex) {
-        double result = -0.5;
+        double result = -0.1;
         Position agentPos = getPosition(agentIndex);
         Position [] bulletsPos = getBulletPosition(agentIndex);
         for(int i = 0; i < agents.length; ++i) {
@@ -215,23 +219,23 @@ public class GameState implements Serializable {
                 if(agents[i].getPos().equals(bulletsPos[j])) {
                     switch (getHealth(i)) {
                         case 5: {
-                            result += 20;
+                            result += 100;
                             break;
                         }
                         case 4: {
-                            result += 40;
+                            result += 150;
                             break;
                         }
                         case 3: {
-                            result += 60;
+                            result += 200;
                             break;
                         }
                         case 2: {
-                            result += 80;
+                            result += 250;
                             break;
                         }
                         case 1: {
-                            result += 100;
+                            result += 750;
                             break;
                         }
                     }
@@ -257,7 +261,7 @@ public class GameState implements Serializable {
                     break;
                 }
                 case 1: {
-                    result -= 50;
+                    result -= 500;
                     break;
                 }
             }
