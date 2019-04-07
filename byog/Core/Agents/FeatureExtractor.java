@@ -24,7 +24,7 @@ public class FeatureExtractor implements Serializable {
         // feature 0
         Agent nearest = state.getNearestAgent(agentIndex);
         features[0] = nearest.getPos().distanceSquaredTo(nextState.getAgent(agentIndex).getPos());
-        //features[0] = 1;
+        //eatures[0] = 1;
 
         // feature 1
         features[1] = nextState.getHealth(agentIndex);
@@ -125,6 +125,13 @@ public class FeatureExtractor implements Serializable {
                 }
             }
         }
+
+        if (nextState.isBulletComingToBot(agentIndex)) {
+            features[8] = -1;
+        } else {
+            features[8] = 1;
+        }
+
     }
 
     public static void normalized(double [] features) {
@@ -138,4 +145,5 @@ public class FeatureExtractor implements Serializable {
         }
         features[features.length -1] = 1;
     }
+
 }

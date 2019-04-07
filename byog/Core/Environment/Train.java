@@ -82,7 +82,7 @@ public class Train {
     }
 
     public static void main(String args []) {
-        Train t = new Train(10);
+        Train t = new Train(100);
         t.train();
         System.out.println("Starting game with trained agents: ");
         Game g = new Game(t.agents);

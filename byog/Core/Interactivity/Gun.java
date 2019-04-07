@@ -6,8 +6,10 @@ import byog.TileEngine.Tileset;
 
 import java.io.Serializable;
 
+import static byog.TileEngine.TETile.copyOf;
+
 public class Gun implements Serializable {
-    private class Bullet implements Serializable {
+    public class Bullet implements Serializable {
         int x;
         int y;
         int direction;
@@ -34,7 +36,7 @@ public class Gun implements Serializable {
             return direction;
         }
 
-        protected Position getPos() {
+        public Position getPos() {
             return new Position(x, y);
         }
 
@@ -153,4 +155,17 @@ public class Gun implements Serializable {
 
         return bullets;
     }
+
+     public Bullet[] getBullets() {
+        int temp = 0;
+        Bullet [] bullets = new Bullet[count];
+        for (int i = 0; i < 20; ++i) {
+            if (ammo[i] == null || ammo[i].finished()) {
+                continue;
+            }
+            bullets[temp] = new Bullet(ammo[i], copyOf(map));
+            ++temp;
+        }
+        return bullets;
+     }
 }

@@ -8,6 +8,7 @@ import byog.TileEngine.Tileset;
 
 import java.io.Serializable;
 import java.util.Random;
+import byog.Core.Interactivity.Gun.Bullet;
 
 public class Agent implements Serializable {
 
@@ -86,6 +87,7 @@ public class Agent implements Serializable {
         && !map[x][y+1].equals(Tileset.FLOWER)) {
             map[x][y] = Tileset.FLOOR;
             map[x][y+1] = tetile;
+            updateImage('u');
             ++y;
             gun.setPos(x,y);
             return "GOING UP";
@@ -103,6 +105,7 @@ public class Agent implements Serializable {
         && !map[x][y-1].equals(Tileset.FLOWER)) {
             map[x][y] = Tileset.FLOOR;
             map[x][y-1] = tetile;
+            updateImage('d');
             --y;
             gun.setPos(x,y);
             return "GOING UP";
@@ -120,6 +123,7 @@ public class Agent implements Serializable {
                     && !map[x-1][y].equals(Tileset.FLOWER)) {
             map[x][y] = Tileset.FLOOR;
             map[x-1][y] = tetile;
+            updateImage('l');
             --x;
             gun.setPos(x,y);
             return "GOING UP";
@@ -137,6 +141,7 @@ public class Agent implements Serializable {
                     && !map[x+1][y].equals(Tileset.FLOWER)) {
             map[x][y] = Tileset.FLOOR;
             map[x+1][y] = tetile;
+            updateImage('r');
             ++x;
             gun.setPos(x,y);
             return "GOING UP";
@@ -188,6 +193,9 @@ public class Agent implements Serializable {
         return gun.getBulletPosition();
     }
 
+
+     public Bullet[] getBullets() { return gun.getBullets(); }
+
     public Position getPos() {
         return new Position(x,y);
     }
@@ -228,5 +236,16 @@ public class Agent implements Serializable {
 
     public void setGun(Gun other) {
         this.gun = other;
+    }
+
+    public void updateImage(char action) {
+        alternate = (alternate + 1) % 3;
+        if (tetile.equals(Tileset.MOUNTAIN)) {
+            String path = "byog/Images/bot/" + action + "" + alternate + ".png";
+            Tileset.MOUNTAIN.changeImage(path);
+        } else if (tetile.equals(Tileset.PLAYER)) {
+            String path = "byog/Images/player/" + action + "" + alternate + ".png";
+            Tileset.PLAYER.changeImage(path);
+        }
     }
 }

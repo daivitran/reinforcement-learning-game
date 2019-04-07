@@ -8,6 +8,7 @@ import byog.TileEngine.Tileset;
 import java.io.Serializable;
 
 import static byog.TileEngine.TETile.copyOf;
+import byog.Core.Interactivity.Gun.Bullet;
 
 public class GameState implements Serializable {
     private Agent[] agents;
@@ -78,44 +79,6 @@ public class GameState implements Serializable {
         }
 
         return other;
-    }
-
-    public int isBulletComingToBot(int agentIndex) {
-        Position botPos = agents[agentIndex].getPos();
-        int x = botPos.x;
-        int y = botPos.y;
-//        System.out.println("StartBullet");
-        while(map[x][y] != Tileset.WALL) {
-            ++x;
-            if(map[x][y] == Tileset.FLOWER) {
-                return 1;
-            }
-        }
-
-        x = botPos.x;
-        while(map[x][y] != Tileset.WALL) {
-            --x;
-            if(map[x][y] == Tileset.FLOWER) {
-                return 1;
-            }
-        }
-
-        while(map[x][y] != Tileset.WALL) {
-            ++y;
-            if(map[x][y] == Tileset.FLOWER) {
-                return 1;
-            }
-        }
-
-        y = botPos.y;
-        while(map[x][y] != Tileset.WALL) {
-            --y;
-            if(map[x][y] == Tileset.FLOWER) {
-                return 1;
-            }
-        }
-//        System.out.println("EndBullet");
-        return 0;
     }
 
     public GameState getNextState(int agentIndex, char action) {
@@ -191,12 +154,19 @@ public class GameState implements Serializable {
     }
 
     private void update() {
+        for (int i = 0; i < agents.length; ++i) {
+            if (agents[i] == null) {
+                continue;
+            } else {
+                agents[i].checkGotShot();
+            }
+        }
+
         if(BULLETDELAY == 0) {
             BULLETDELAY = 8;
             for(int i = 0; i < agents.length; ++i) {
                 if(agents[i] == null) { continue; }
                 agents[i].updateBullets();
-                agents[i].checkGotShot();
             }
         }
         else {
@@ -268,4 +238,76 @@ public class GameState implements Serializable {
         }
         return result;
     }
+
+
+
+
+     public boolean isBulletComingToBot(int agentIndex) {
+         Bullet[] bullets = getOtherBullets(agentIndex);
+         for (Bullet bullet : bullets) {
+             if (bullet == null) {
+                 continue;
+             }
+             int bulletDirection = bullet.getDirection();
+             int i = 0;
+             int numOfNext = 5;
+             int bX = bullet.getPos().x;
+             int bY = bullet.getPos().y;
+             int aX = getPosition(agentIndex).x;
+             int aY = getPosition(agentIndex).y;
+             switch (bulletDirection) {
+                 case 0 :
+                     while (map[bX][bY] != Tileset.WALL && i < numOfNext) {
+                         if (bX == aX && bY == aY) {
+                             return true;
+                         }
+                         ++bY;
+                         ++i;
+                     }
+                     break;
+                 case 1 :
+                     while (map[bX][bY] != Tileset.WALL && i < numOfNext) {
+                         if (bX == aX && bY == aY) {
+                             return true;
+                         }
+                         ++bX;
+                         ++i;
+                     }
+                     break;
+                 case 2 :
+                     while (map[bX][bY] != Tileset.WALL && i < numOfNext) {
+                         if (bX == aX && bY == aY) {
+                             return true;
+                         }
+                         --bY;
+                         ++i;
+                     }
+                     break;
+                 case 3 :
+                     while (map[bX][bY] != Tileset.WALL && i < numOfNext) {
+                         if (bX == aX && bY == aY) {
+                             return true;
+                         }
+                         --bX;
+                         ++i;
+                     }
+                     break;
+             }
+         }
+         return false;
+    }
+
+     public Bullet[] getOtherBullets(int agentIndex) {
+        int count = getNumOfAgents() - 1;
+        Bullet[] bullets = new Bullet[count * 20];
+        int temp = 0;
+        for(int i = 0; i < agents.length; ++i) {
+            if(agents[i] == null | i == agentIndex) { continue; }
+            Bullet [] otherBullets = agents[i].getBullets();
+            System.arraycopy(otherBullets, 0, bullets, temp,  otherBullets.length);
+            temp += otherBullets.length;
+        }
+        return bullets;
+     }
+
 }
