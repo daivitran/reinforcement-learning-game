@@ -9,7 +9,9 @@ import java.io.Serializable;
 import static byog.TileEngine.TETile.copyOf;
 
 public class Gun implements Serializable {
+
     public class Bullet implements Serializable {
+
         int x;
         int y;
         int direction;
@@ -42,8 +44,11 @@ public class Gun implements Serializable {
 
         private void update() {
             if (!hitWall) {
-                map[x][y] = map[x][y].equals(Tileset.PLAYER) || map[x][y].equals(Tileset.MOUNTAIN)
-                        ? map[x][y] : Tileset.FLOOR;
+                map[x][y] = map[x][y].equals(Tileset.PLAYER)
+                            || map[x][y].equals(Tileset.BOT1)
+                            || map[x][y].equals(Tileset.BOT2)
+                            || map[x][y].equals(Tileset.BOT3)
+                            || map[x][y].equals(Tileset.BOT4) ? map[x][y] : Tileset.FLOOR;
                 switch (direction) {
                     case 0: {
                         ++y;
@@ -76,6 +81,7 @@ public class Gun implements Serializable {
         }
 
     }
+
     private TETile[][] map;
     private Bullet [] ammo;
     private int x;

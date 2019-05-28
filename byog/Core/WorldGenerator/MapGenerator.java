@@ -24,6 +24,7 @@ import java.util.Random;
  *
  */
 public class MapGenerator {
+
     private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
     private static final int WINDOW_WIDTH = 80;
@@ -56,18 +57,19 @@ public class MapGenerator {
         RANDOM = new Random(seed);
     }
 
-    /* Fill our world with NOTHING, FLOOR, and WALL.
-     * @param 2D array world.
+    /**
+     * Fill our world with NOTHING, FLOOR, and WALL.
+     * @param world 2D array world.
      */
     public void generateWorld(TETile[][] world) {
         fillNothing(world);
         fillFloor(world);
         fillWall(world);
-//        pickExitDoor(world);
     }
 
-    /* Fill the world with nothing.
-     * @param 2D array world.
+    /**
+     * Fill the world with nothing.
+     * @param world 2D array world.
      */
     private void fillNothing(TETile[][] world) {
         int worldHeight = world[0].length;
@@ -79,8 +81,9 @@ public class MapGenerator {
         }
     }
 
-    /* Fill the world with floor 2 unit inside the 4 edges.
-     * @param 2D array world.
+    /**
+     * Fill the world with floor 2 unit inside the 4 edges.
+     * @param world 2D array world.
      */
     private void fillFloor(TETile[][] world) {
         int worldHeight = world[0].length;
@@ -96,8 +99,9 @@ public class MapGenerator {
             }
         }
     }
-    /* Surrounds the floor in the world with wall.
-     * @param 2D array world.
+    /**
+     * Surrounds the floor in the world with wall.
+     * @param world 2D array world.
      */
     private void fillWall(TETile[][] world) {
         int worldHeight = world[0].length;
@@ -117,29 +121,10 @@ public class MapGenerator {
         }
     }
 
-    /* Randomly pick a valid wall to be our exit door.
-     * @param 2D array world.
-     */
-    private void pickExitDoor(TETile[][] world) {
-        int worldHeight = world[0].length;
-        int worldWidth = world.length;
-        for (int x = 0; x < worldWidth; ++x) {
-            for (int y = 0; y < worldHeight; ++y) {
-                if (world[x][y] == Tileset.WALL) {
-                    Position p = new Position(x, y);
-                    if (canBeDoor(world, p)) {
-                        wallPositions.add(p);
-                    }
-                }
-            }
-        }
-        Position doorPosition = wallPositions.get(RANDOM.nextInt(wallPositions.size()));
-        world[doorPosition.x][doorPosition.y] = Tileset.UNLOCKED_DOOR;
-    }
-
-    /* Check if the wall is possible to be a door.
-     * @param 2D array of world.
-     * @param position of considered wall.
+    /**
+     * Check if the wall is possible to be a door.
+     * @param world 2D array of world.
+     * @param wallPosition position of considered wall.
      * @return true if the wall can make a valid door
      */
     private boolean canBeDoor(TETile[][] world, Position wallPosition) {
@@ -151,7 +136,8 @@ public class MapGenerator {
                     || world[x][y - 1].equals(Tileset.FLOOR);
     }
 
-    /* Create a 2D array with rooms and halls.
+    /**
+     * Create a 2D array with rooms and halls.
      * @param width (2 unit less than map width).
      * @param height (2 unit less than map).
      * @return a 2D array with room and halls.
@@ -228,8 +214,9 @@ public class MapGenerator {
         return roomAndHall;
     }
 
-    /* Make sure this room or hall does not overlap with other rooms or halls.
-     * @param a room.
+    /**
+     * Make sure this room or hall does not overlap with other rooms or halls.
+     * @param block a room.
      * @return true if it does not overlap, false otherwise.
      */
     private boolean isValidBlock(Block block) {
@@ -241,9 +228,10 @@ public class MapGenerator {
         return true;
     }
 
-    /* Draw a block or hall on the world.
-     * @param 2D array world.
-     * @param a block.
+    /**
+     * Draw a block or hall on the world.
+     * @param world 2D array world.
+     * @param block a block.
      */
     private void drawBlock(TETile[][] world, Block block) {
         for (int x = block.p1.x; x <= block.p2.x; ++x) {
@@ -253,10 +241,11 @@ public class MapGenerator {
         }
     }
 
-    /* Connect a room to the previous  in our collection through their
+    /**
+     * Connect a room to the previous  in our collection through their
      * special interior points.
-     * @param 2D array world.
-     * @param a room.
+     * @param world 2D array world.
+     * @param block a room.
      */
     private void connectBlock(TETile[][] world, Block block) {
         if (blocks.size() != 0) {
@@ -267,15 +256,16 @@ public class MapGenerator {
         }
     }
 
-    /* This special method draws the vertical hall and horizontal hall to
+    /**
+     * This special method draws the vertical hall and horizontal hall to
      * connect the randomPoint 's of two room. However, unlike the drawRoom() method,
      * this method can be called when the halls that are about to be drawn overlaps with
      * other existed rooms or hall. As a result, in addition to drawing and adding the hall
      * into our collection, we going to subtract the overlapped area from the total area after
      * adding the hall with the help of specialDraw() method.
-     * @param 2D array world.
-     * @param room.
-     * @param room.
+     * @param world 2D array world.
+     * @param p1 of room.
+     * @param p2 of room.
      */
     private void specialConnect(TETile[][] world, Position p1, Position p2) {
         // Set up p1 and p2 for personal preferences, p1 is on the left of p2.
@@ -329,9 +319,10 @@ public class MapGenerator {
         specialDraw(world, horizontalHall);
     }
 
-    /* This special method draws and subtracts overlap area.
-     * @param 2D array world.
-     * @param room.
+    /**
+     * This special method draws and subtracts overlap area.
+     * @param world 2D array world.
+     * @param block room.
      */
     private void specialDraw(TETile[][] world, Block block) {
         for (int x = block.p1.x; x <= block.p2.x; ++x) {
@@ -345,8 +336,9 @@ public class MapGenerator {
         }
     }
 
-    /* Adds a block to our collection and updates area usage.
-     * @param a room.
+    /**
+     * Adds a block to our collection and updates area usage.
+     * @param block room.
      */
     private void addBlock(Block block) {
         blocks.add(block);

@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Environment {
+
     private GameState thisState;
     private GameState lastState;
     private boolean render = false;
@@ -32,7 +33,6 @@ public class Environment {
     public void runEpisode() {
         int numOfAgents = thisState.getNumOfAgents();
         while(!thisState.isTerminal()) {
-//            boolean doneAction = false;
             for (int i = 1; i < numOfAgents + 1; ++i) {
                 if (!thisState.isAlive(i)) { continue; }
                 char action = thisState.nextAction(i);
@@ -45,32 +45,11 @@ public class Environment {
                     }
                     double reward = thisState.getThisStateReward(i);
                     ((ApproximateQAgent) agent).observeTransition(lastState, action, thisState, reward);
-//                    if (reward > 0) {
-//                        System.out.println("Reward: " + reward);
-//                    }
-
-//                    doneAction = true;
-//                    System.out.println("Agent " + i + " turn:");
-//                    System.out.println("Action of agent " + i + ": " + action);
                 }
             }
-//            if(doneAction) {
-//                System.out.println("Next state received.");
-//                System.out.println("Remaining agents: " + thisState.getAliveAgents() + "\n");
-//            }
             if(render) {
                 render(thisState);
             }
-        }
-
-        System.out.println("Agents' reward: ");
-        for(int j = 0; j < numOfAgents; ++j) {
-            ((ApproximateQAgent) thisState.getAgent(j + 1)).terminated();
-        }
-
-        System.out.println("Agents' weight: ");
-        for(int j = 0; j < numOfAgents; ++j) {
-            ((ApproximateQAgent) thisState.getAgent(j + 1)).printWeights();
         }
     }
 

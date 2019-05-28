@@ -22,17 +22,13 @@ public class Agent implements Serializable {
     protected int alternate = 0;
     protected int agentIndex;
     protected int isAlive = 1;
-
+    protected int team;
 
     public Agent() {
 
     }
 
-    public Agent clone(TETile [][] map) {
-        return new Agent();
-    }
-
-    public Agent(Agent other, TETile [][] map) {
+    public Agent(Agent other, TETile [][] map, int team) {
         this.map = map;
         this.gun = new Gun(other.gun, this.map);
         this.x = other.x;
@@ -42,6 +38,11 @@ public class Agent implements Serializable {
         this.alternate = other.alternate;
         this.agentIndex = other.agentIndex;
         this.tetile = other.tetile;
+        this.team = team;
+    }
+
+    public Agent clone(TETile [][] map) {
+        return new Agent();
     }
 
     public String doAction(char k) {
@@ -82,9 +83,14 @@ public class Agent implements Serializable {
     }
 
     protected String moveUp() {
-        if(!map[x][y + 1].equals(Tileset.WALL) && !map[x][y+1].equals(Tileset.UNLOCKED_DOOR) &&
-        !map[x][y+1].equals(Tileset.PLAYER) && !map[x][y+1].equals(Tileset.MOUNTAIN)
-        && !map[x][y+1].equals(Tileset.FLOWER)) {
+        if(!map[x][y + 1].equals(Tileset.WALL)
+                && !map[x][y+1].equals(Tileset.UNLOCKED_DOOR)
+                && !map[x][y+1].equals(Tileset.PLAYER)
+                && !map[x][y+1].equals(Tileset.FLOWER)
+                && !map[x][y+1].equals(Tileset.BOT1)
+                && !map[x][y+1].equals(Tileset.BOT2)
+                && !map[x][y+1].equals(Tileset.BOT3)
+                && !map[x][y+1].equals(Tileset.BOT4)) {
             map[x][y] = Tileset.FLOOR;
             map[x][y+1] = tetile;
             updateImage('u');
@@ -100,9 +106,14 @@ public class Agent implements Serializable {
      * @return a String signalling that the bot is moving down.
      */
     protected String moveDown() {
-        if(!map[x][y - 1].equals(Tileset.WALL) && !map[x][y-1].equals(Tileset.UNLOCKED_DOOR) &&
-        !map[x][y-1].equals(Tileset.PLAYER) && !map[x][y-1].equals(Tileset.MOUNTAIN)
-        && !map[x][y-1].equals(Tileset.FLOWER)) {
+        if(!map[x][y - 1].equals(Tileset.WALL)
+                && !map[x][y-1].equals(Tileset.UNLOCKED_DOOR)
+                && !map[x][y-1].equals(Tileset.PLAYER)
+                && !map[x][y-1].equals(Tileset.FLOWER)
+                && !map[x][y-1].equals(Tileset.BOT1)
+                && !map[x][y-1].equals(Tileset.BOT2)
+                && !map[x][y-1].equals(Tileset.BOT3)
+                && !map[x][y-1].equals(Tileset.BOT4)) {
             map[x][y] = Tileset.FLOOR;
             map[x][y-1] = tetile;
             updateImage('d');
@@ -118,9 +129,14 @@ public class Agent implements Serializable {
      * @return a String signalling that the bot is moving left.
      */
     protected String moveLeft() {
-        if(!map[x-1][y].equals(Tileset.WALL) && !map[x-1][y].equals(Tileset.UNLOCKED_DOOR) &&
-                !map[x-1][y].equals(Tileset.PLAYER) && !map[x-1][y].equals(Tileset.MOUNTAIN)
-                    && !map[x-1][y].equals(Tileset.FLOWER)) {
+        if(!map[x-1][y].equals(Tileset.WALL)
+                && !map[x-1][y].equals(Tileset.UNLOCKED_DOOR)
+                && !map[x-1][y].equals(Tileset.PLAYER)
+                && !map[x-1][y].equals(Tileset.FLOWER)
+                && !map[x-1][y].equals(Tileset.BOT1)
+                && !map[x-1][y].equals(Tileset.BOT2)
+                && !map[x-1][y].equals(Tileset.BOT3)
+                && !map[x-1][y].equals(Tileset.BOT4)) {
             map[x][y] = Tileset.FLOOR;
             map[x-1][y] = tetile;
             updateImage('l');
@@ -136,9 +152,14 @@ public class Agent implements Serializable {
      * @return a String signalling that the bot is moving right.
      */
     protected String moveRight() {
-        if(!map[x+1][y].equals(Tileset.WALL) && !map[x+1][y].equals(Tileset.UNLOCKED_DOOR) &&
-                !map[x+1][y].equals(Tileset.PLAYER) && !map[x+1][y].equals(Tileset.MOUNTAIN)
-                    && !map[x+1][y].equals(Tileset.FLOWER)) {
+        if(!map[x+1][y].equals(Tileset.WALL)
+                && !map[x+1][y].equals(Tileset.UNLOCKED_DOOR)
+                && !map[x+1][y].equals(Tileset.PLAYER)
+                && !map[x+1][y].equals(Tileset.FLOWER)
+                && !map[x+1][y].equals(Tileset.BOT1)
+                && !map[x+1][y].equals(Tileset.BOT2)
+                && !map[x+1][y].equals(Tileset.BOT3)
+                && !map[x+1][y].equals(Tileset.BOT4)) {
             map[x][y] = Tileset.FLOOR;
             map[x+1][y] = tetile;
             updateImage('r');
@@ -152,7 +173,6 @@ public class Agent implements Serializable {
 
     protected String shoot() {
         gun.shoot(direction);
-        //StdAudio.play("/byog/Soundtrack/laser.wav");
         return "Pow Pow";
     }
 
@@ -172,6 +192,7 @@ public class Agent implements Serializable {
         if(isAlive == 0) {
             return;
         }
+
         if(map[x][y] == Tileset.FLOWER) {
             --health;
             map[x][y] = tetile;
@@ -194,7 +215,9 @@ public class Agent implements Serializable {
     }
 
 
-     public Bullet[] getBullets() { return gun.getBullets(); }
+    public Bullet[] getBullets() {
+        return gun.getBullets();
+    }
 
     public Position getPos() {
         return new Position(x,y);
@@ -204,11 +227,18 @@ public class Agent implements Serializable {
         return map;
     }
 
-    public int checkAlive() { return isAlive; }
+    public int checkAlive() {
+        return isAlive;
+    }
+
+
+    public int team() {
+        return team;
+    }
+
 
     public void initialPosition() {
         Random r = new Random(534213);
-
         int width = 0;
         int height = 0;
         while(map[width][height] != Tileset.FLOOR) {
@@ -217,7 +247,6 @@ public class Agent implements Serializable {
         }
         x = width;
         y = height;
-//        System.out.println(x + ", " + y);
         health = 5;
         alternate = 0;
         isAlive = 1;
@@ -240,9 +269,18 @@ public class Agent implements Serializable {
 
     public void updateImage(char action) {
         alternate = (alternate + 1) % 3;
-        if (tetile.equals(Tileset.MOUNTAIN)) {
+        if (tetile.equals(Tileset.BOT1)) {
             String path = "byog/Images/bot/" + action + "" + alternate + ".png";
-            Tileset.MOUNTAIN.changeImage(path);
+            Tileset.BOT1.changeImage(path);
+        } else if (tetile.equals(Tileset.BOT2)) {
+            String path = "byog/Images/bot/" + action + "" + alternate + ".png";
+            Tileset.BOT2.changeImage(path);
+        } else if (tetile.equals(Tileset.BOT3)) {
+            String path = "byog/Images/bot/" + action + "" + alternate + ".png";
+            Tileset.BOT3.changeImage(path);
+        } else if (tetile.equals(Tileset.BOT4)) {
+            String path = "byog/Images/bot/" + action + "" + alternate + ".png";
+            Tileset.BOT4.changeImage(path);
         } else if (tetile.equals(Tileset.PLAYER)) {
             String path = "byog/Images/player/" + action + "" + alternate + ".png";
             Tileset.PLAYER.changeImage(path);

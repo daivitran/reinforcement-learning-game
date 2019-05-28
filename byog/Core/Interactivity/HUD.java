@@ -8,6 +8,7 @@ import java.io.Serializable;
  * on anywhere in the map.
  */
 public class HUD implements Serializable {
+
     private TETile[][] map;
 
     public HUD(TETile[][] map) {

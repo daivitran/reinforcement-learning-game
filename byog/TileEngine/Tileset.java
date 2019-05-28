@@ -17,6 +17,7 @@ import java.awt.Color;
  */
 
 public class Tileset {
+
     public static TETile PLAYER = new TETile('@', Color.yellow, Color.black, "player",
             "byog/Images/player/d0.png");
     public static final TETile WALL = new TETile('#', new Color(216, 128, 128), Color.darkGray,
@@ -34,7 +35,14 @@ public class Tileset {
     public static final TETile UNLOCKED_DOOR = new TETile('▢', Color.orange, Color.black,
             "unlocked door", "byog/Images/unlockedDoor.png");
     public static final TETile SAND = new TETile('▒', Color.yellow, Color.black, "sand");
-    public static final TETile MOUNTAIN = new TETile('▲', Color.gray, Color.black, "mountain", "byog/Images/bot/d0.png");
+    public static final TETile BOT1 = new TETile('a', Color.gray, Color.black, "bot1",
+            "byog/Images/bot/d0.png");
+    public static final TETile BOT2 = new TETile('b', Color.gray, Color.black, "bot2",
+            "byog/Images/bot/d0.png");
+    public static final TETile BOT3 = new TETile('c', Color.gray, Color.black, "bot3",
+            "byog/Images/bot/d0.png");
+    public static final TETile BOT4 = new TETile('d', Color.gray, Color.black, "bot4",
+            "byog/Images/bot/d0.png");
     public static final TETile TREE = new TETile('♠', Color.green, Color.black, "tree");
 }
 

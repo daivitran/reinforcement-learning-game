@@ -8,15 +8,17 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class RandomAgent extends Bot implements Serializable {
+
     private Random r;
-    public RandomAgent(TETile[][] map, int agentIndex) {
-        super(map, agentIndex);
+
+    public RandomAgent(TETile[][] map, int agentIndex, int team) {
+        super(map, agentIndex, team);
         r = new Random(1234567);
     }
 
     @Override
     public RandomAgent clone(TETile [][] map) {
-        RandomAgent agent = new RandomAgent(map, agentIndex);
+        RandomAgent agent = new RandomAgent(map, agentIndex, team);
         agent.delay = this.delay;
         agent.setGun(new Gun(this.gun, map));
         agent.x = this.x;

@@ -12,12 +12,7 @@ import edu.princeton.cs.introcs.StdAudio;
 import java.awt.Color;
 import java.awt.Font;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-import java.io.IOException;
-import java.io.File;
+import java.io.*;
 
 import java.lang.Character;
 
@@ -26,10 +21,12 @@ import java.lang.Character;
 public class Game {
     private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
-    private boolean render = true;
+    private static final double[] WEIGHTS = new double[FeatureExtractor.numOfFeatures];
     private Agent [] agents;
+    private boolean render = true;
 
-    public Game() {
+
+    public Game() throws Exception {
         StdDraw.setCanvasSize(WIDTH * 16, HEIGHT * 16);
 
         Font font = new Font("Monaco", Font.BOLD, 30);
@@ -40,11 +37,17 @@ public class Game {
 
         StdDraw.clear(Color.BLACK);
         StdDraw.enableDoubleBuffering();
-    }
 
-    public Game(Agent [] agents) {
-        this();
-        this.agents = agents;
+        FileInputStream fis = new FileInputStream("weights.txt");
+        DataInputStream dis = new DataInputStream(fis);
+        int i = 0;
+        while (dis.available() > 0) {
+            double weight = dis.readDouble();
+            WEIGHTS[i++] = weight;
+        }
+
+        int numOfAgents = 4;
+        this.agents = new Agent[numOfAgents];
     }
 
     public void muteGraphics() {
@@ -78,38 +81,21 @@ public class Game {
                 Long seed = getInput();
                 MapGenerator m = new MapGenerator(seed);
 
-                TETile[][] map= new TETile[WIDTH][HEIGHT];
+                TETile[][] map = new TETile[WIDTH][HEIGHT];
                 m.generateWorld(map);
                 HUD hud = new HUD(map);
 
-                int numOfAgents = 4;
-                Agent[] agents = new Agent[numOfAgents];
-                agents[0] = new Player(map);
+                this.agents[0] = new Player(map, 0);
 
-                if(this.agents == null) {
-                    for (int i = 1; i < numOfAgents; ++i) {
-                        agents[i] = new ApproximateQAgent(map, i);
-                    }
-                } else {
-                    for(int i = 1; i < numOfAgents; ++i) {
-                        agents[i] = this.agents[i];
-                        agents[i].setMap(map);
-                        ((ApproximateQAgent) agents[i]).interact();
-                    }
+                for (int i = 1; i < this.agents.length; ++i) {
+                        this.agents[i] = new ApproximateQAgent(map, i, 1, WEIGHTS);
                 }
 
-                this.agents = agents;
-
-                for (int i = 0; i < numOfAgents; ++i) {
+                for (int i = 0; i < this.agents.length; ++i) {
                     this.agents[i].initialPosition();
                 }
 
                 GameState state = new GameState(map, this.agents);
-
-                for(int i = 1; i < this.agents.length; ++i) {
-                    ((ApproximateQAgent) this.agents[i]).printWeights();
-                }
-                System.out.println();
 
                 Controller c = new Controller(hud, state);
 

@@ -2,7 +2,7 @@ package byog.Core.WorldGenerator;
 
 import java.util.Random;
 
-/*
+/**
  * Block is a generalization of Room and Hall in the map. We treat
  * both of these objects as Block with common fields.
  *
@@ -23,12 +23,18 @@ import java.util.Random;
  *
  */
 abstract class Block {
+
     static final int SEED = 50;
     static final Random RANDOM = new Random(SEED);
 
     Position p1, p2, interiorPoint;
     int width, height;
 
+    /**
+     * Check if this block intersects other blocks.
+     * @param block a block in the map.
+     * @return true if they intersect.
+     */
     boolean intersect(Block block) {
         return p1.x < block.p2.x
                 && p2.x > block.p1.x

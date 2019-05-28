@@ -7,15 +7,17 @@ import byog.TileEngine.Tileset;
 import java.io.Serializable;
 
 public class Player extends Agent implements Serializable {
-    public Player(TETile[][] map) {
+
+    public Player(TETile[][] map, int team) {
         this.map = map;
         this.agentIndex = 0;
         this.tetile = Tileset.PLAYER;
+        this.team = team;
     }
 
     @Override
     public Player clone(TETile[][] map) {
-        Player player = new Player(map);
+        Player player = new Player(map, this.team);
         player.setGun(new Gun(this.gun, map));
         player.x = this.x;
         player.y = this.y;

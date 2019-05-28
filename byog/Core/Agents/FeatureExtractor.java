@@ -8,6 +8,7 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
 public class FeatureExtractor implements Serializable {
+
     public static final int numOfFeatures = 9;
 
     public static double[] getFeatures(GameState state, char action, int agentIndex) {
@@ -24,7 +25,7 @@ public class FeatureExtractor implements Serializable {
         // feature 0
         Agent nearest = state.getNearestAgent(agentIndex);
         features[0] = nearest.getPos().distanceSquaredTo(nextState.getAgent(agentIndex).getPos());
-        //eatures[0] = 1;
+        // features[0] = 1;
 
         // feature 1
         features[1] = nextState.getHealth(agentIndex);
@@ -56,7 +57,11 @@ public class FeatureExtractor implements Serializable {
         for(int i = 0; i < agentBullets.length; ++i) {
             if(agentBullets[i] == null) { continue; }
             Position bullet = agentBullets[i];
-            if(map[bullet.x][bullet.y] == Tileset.MOUNTAIN || map[bullet.x][bullet.y] == Tileset.PLAYER) {
+            if(map[bullet.x][bullet.y] == Tileset.BOT1 && state.getAgent(1).team() != state.getAgent(agentIndex).team()
+                    || map[bullet.x][bullet.y] == Tileset.BOT2 && state.getAgent(2).team() != state.getAgent(agentIndex).team()
+                    || map[bullet.x][bullet.y] == Tileset.BOT3 && state.getAgent(3).team() != state.getAgent(agentIndex).team()
+                    || map[bullet.x][bullet.y] == Tileset.BOT4 && state.getAgent(4).team() != state.getAgent(agentIndex).team()
+                    || map[bullet.x][bullet.y] == Tileset.PLAYER && state.getAgent(0).team() != state.getAgent(agentIndex).team()) { //
                 features[5] += 5;
             }
         }
@@ -72,8 +77,13 @@ public class FeatureExtractor implements Serializable {
             int yyTemp = y;
             switch(i) {
                 case 0: {
-                    while(map[xxTemp][yyTemp] != Tileset.WALL && map[xxTemp][yyTemp] != Tileset.PLAYER
-                            && map[xxTemp][yyTemp] != Tileset.MOUNTAIN) {
+                    while(map[xxTemp][yyTemp] != Tileset.WALL
+                            && map[xxTemp][yyTemp] != Tileset.PLAYER
+                            && map[xxTemp][yyTemp] != Tileset.BOT1
+                            && map[xxTemp][yyTemp] != Tileset.BOT2
+                            && map[xxTemp][yyTemp] != Tileset.BOT3
+                            && map[xxTemp][yyTemp] != Tileset.BOT4
+                            ) {
                         ++yyTemp;
                     }
                     if(map[xxTemp][yyTemp] != Tileset.WALL) {
@@ -85,8 +95,12 @@ public class FeatureExtractor implements Serializable {
                     break;
                 }
                 case 1: {
-                    while(map[xxTemp][yyTemp] != Tileset.WALL && map[xxTemp][yyTemp] != Tileset.PLAYER
-                            && map[xxTemp][yyTemp] != Tileset.MOUNTAIN) {
+                    while(map[xxTemp][yyTemp] != Tileset.WALL
+                            && map[xxTemp][yyTemp] != Tileset.PLAYER
+                            && map[xxTemp][yyTemp] != Tileset.BOT1
+                            && map[xxTemp][yyTemp] != Tileset.BOT2
+                            && map[xxTemp][yyTemp] != Tileset.BOT3
+                            && map[xxTemp][yyTemp] != Tileset.BOT4) {
                         --yyTemp;
                     }
                     if(map[xxTemp][yyTemp] != Tileset.WALL) {
@@ -98,8 +112,12 @@ public class FeatureExtractor implements Serializable {
                     break;
                 }
                 case 2: {
-                    while(map[xxTemp][yyTemp] != Tileset.WALL && map[xxTemp][yyTemp] != Tileset.PLAYER
-                            && map[xxTemp][yyTemp] != Tileset.MOUNTAIN) {
+                    while(map[xxTemp][yyTemp] != Tileset.WALL
+                            && map[xxTemp][yyTemp] != Tileset.PLAYER
+                            && map[xxTemp][yyTemp] != Tileset.BOT1
+                            && map[xxTemp][yyTemp] != Tileset.BOT2
+                            && map[xxTemp][yyTemp] != Tileset.BOT3
+                            && map[xxTemp][yyTemp] != Tileset.BOT4) {
                         ++xxTemp;
                     }
                     if(map[xxTemp][yyTemp] != Tileset.WALL) {
@@ -111,8 +129,12 @@ public class FeatureExtractor implements Serializable {
                     break;
                 }
                 case 3: {
-                    while(map[xxTemp][yyTemp] != Tileset.WALL && map[xxTemp][yyTemp] != Tileset.PLAYER
-                            && map[xxTemp][yyTemp] != Tileset.MOUNTAIN) {
+                    while(map[xxTemp][yyTemp] != Tileset.WALL
+                            && map[xxTemp][yyTemp] != Tileset.PLAYER
+                            && map[xxTemp][yyTemp] != Tileset.BOT1
+                            && map[xxTemp][yyTemp] != Tileset.BOT2
+                            && map[xxTemp][yyTemp] != Tileset.BOT3
+                            && map[xxTemp][yyTemp] != Tileset.BOT4) {
                         --xxTemp;
                     }
                     if(map[xxTemp][yyTemp] != Tileset.WALL) {

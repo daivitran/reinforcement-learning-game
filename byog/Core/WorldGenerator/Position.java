@@ -1,6 +1,6 @@
 package byog.Core.WorldGenerator;
 
-/*
+/**
  * Our grid system
  *             (y) Height --------------------->
  *  (x) Width   -----------------------------
@@ -18,6 +18,7 @@ package byog.Core.WorldGenerator;
  *
  */
 public class Position {
+
     public int x, y;
 
     public Position() {

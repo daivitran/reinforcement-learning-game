@@ -7,16 +7,33 @@ import byog.TileEngine.Tileset;
 import java.io.Serializable;
 
 public class Bot extends Agent implements Serializable {
-    protected int delay = 20;
 
-    public Bot(TETile[][] map, int agentIndex) {
-        this.map = map;
-        this.agentIndex = agentIndex;
-        this.tetile = Tileset.MOUNTAIN;
-    }
+    protected int delay = 20;
 
     public Bot() {
 
+    }
+
+    public Bot(TETile[][] map, int agentIndex, int team) {
+
+        this.map = map;
+        this.agentIndex = agentIndex;
+
+        switch (agentIndex) {
+            case 1:
+                this.tetile = Tileset.BOT1;
+                break;
+            case 2:
+                this.tetile = Tileset.BOT2;
+                break;
+            case 3:
+                this.tetile = Tileset.BOT3;
+                break;
+            case 4:
+                this.tetile = Tileset.BOT4;
+                break;
+        }
+        this.team = team;
     }
 
     @Override

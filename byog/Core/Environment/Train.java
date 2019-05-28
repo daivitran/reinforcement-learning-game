@@ -2,11 +2,14 @@ package byog.Core.Environment;
 
 import byog.Core.Agents.Agent;
 import byog.Core.Agents.ApproximateQAgent;
+import byog.Core.Agents.FeatureExtractor;
 import byog.Core.Agents.Player;
 import byog.Core.Interactivity.Game;
 import byog.Core.WorldGenerator.MapGenerator;
 import byog.TileEngine.TETile;
 
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.util.Random;
 
 public class Train {
@@ -18,20 +21,18 @@ public class Train {
         this.numOfEpisode = numOfEpisode;
     }
 
-    public void train() {
-        train(numOfEpisode);
+    public double[] train() {
+        return train(numOfEpisode);
     }
 
-    private void train(int numOfEpisode) {
+    public double[] train(int numOfEpisode) {
         int i = 0;
         System.out.println("Start training");
         Agent[] agents = new Agent[5];
         int numOfAgents = agents.length;
-
         TETile[][] map = new TETile[80][30];
         for(int j = 1; j < agents.length; ++j) {
-            agents[j] = new ApproximateQAgent(map, j);
-//                System.out.println("Place bot " + j);
+            agents[j] = new ApproximateQAgent(map, j, j);
         }
 
         while(i < numOfEpisode)
@@ -56,37 +57,35 @@ public class Train {
             }
 
             Environment env = new Environment(map, agents);
-//            if(i == 99) {
-//              env.display();
-//            }
+
             env.runEpisode();
 
             System.out.println("Finished episode " + i + ".\n");
             ++i;
 
             agents = env.getState().getAgents();
-//
-//            for(int j = 1; j < numOfAgents; ++j) {
-//                ((ApproximateQAgent) agents[j]).terminated();
-//            }
-//
-//            for(int j = 1; j < numOfAgents; ++j) {
-//                ((ApproximateQAgent) agents[j]).printWeights();
-//            }
         }
-        this.agents = agents;
 
-//        for(int j = 1; j < numOfAgents; ++j) {
-//            ((ApproximateQAgent) this.agents[j]).printWeights();
-//        }
+        Agent maxAgent = agents[1];
+        for (int z = 2; z < agents.length; ++z) {
+            if (((ApproximateQAgent) agents[z]).getReward() > ((ApproximateQAgent) maxAgent).getReward()) {
+                maxAgent = agents[z];
+            }
+        }
+
+        return ((ApproximateQAgent) maxAgent).getWeights();
     }
 
-    public static void main(String args []) {
+    public static void main(String args []) throws Exception {
         Train t = new Train(100);
-        t.train();
-        System.out.println("Starting game with trained agents: ");
-        Game g = new Game(t.agents);
-        g.playWithKeyboard();
-        System.exit(0);
+        double[] weights = new double[FeatureExtractor.numOfFeatures];
+        weights = t.train();
+        FileOutputStream fos = new FileOutputStream("weights.txt");
+        DataOutputStream dos = new DataOutputStream(fos);
+        for (int i = 0; i < weights.length; ++i) {
+            dos.writeDouble(weights[i]);
+        }
+        dos.close();
+        System.out.println("Training done !!! Saved !!");
     }
 }

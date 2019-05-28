@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.Serializable;
 
 public class Controller implements Serializable {
+
     private static final int TILE_SIZE = 16;
     private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
@@ -94,6 +95,18 @@ public class Controller implements Serializable {
                             + " is null.");
                 }
                 if (map[x][y].equals(Tileset.PLAYER)) {
+                    Tileset.FLOOR.draw(x, y);
+                    map[x][y].draw(x, y);
+                } else if (map[x][y].equals(Tileset.BOT1)) {
+                    Tileset.FLOOR.draw(x, y);
+                    map[x][y].draw(x, y);
+                } else if (map[x][y].equals(Tileset.BOT2)) {
+                    Tileset.FLOOR.draw(x, y);
+                    map[x][y].draw(x, y);
+                } else if (map[x][y].equals(Tileset.BOT3)) {
+                    Tileset.FLOOR.draw(x, y);
+                    map[x][y].draw(x, y);
+                } else if (map[x][y].equals(Tileset.BOT4)) {
                     Tileset.FLOOR.draw(x, y);
                     map[x][y].draw(x, y);
                 } else if (map[x][y].equals(Tileset.FLOWER)) {

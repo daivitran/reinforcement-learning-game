@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class ApproximateQAgent extends Bot implements Serializable {
+
     private static final double LAMBDA = -0.000002;
     public static double DISCOUNT = 0.99;
     public static double ALPHA = 0.001;
@@ -17,16 +18,25 @@ public class ApproximateQAgent extends Bot implements Serializable {
     private Random r;
 
     private double[] weights = new double[FeatureExtractor.numOfFeatures];
-    public ApproximateQAgent(TETile[][] map, int agentIndex) {
-        super(map, agentIndex);
+
+    public ApproximateQAgent(TETile[][] map, int agentIndex, int team) {
+        super(map, agentIndex, team);
         for(int i = 1; i <= FeatureExtractor.numOfFeatures; ++i) {
             weights[i-1] = 0.1 * i;
         }
         r = new Random(32431242);
     }
 
+    public ApproximateQAgent(TETile[][] map, int agentIndex, int team, double[] weights) {
+        super(map, agentIndex, team);
+        for (int i = 1; i <= FeatureExtractor.numOfFeatures; ++i) {
+            this.weights[i - 1] = weights[i - 1];
+        }
+        r = new Random(32431242);
+    }
+
     public ApproximateQAgent(ApproximateQAgent other) {
-        super(other.map, other.agentIndex);
+        super(other.map, other.agentIndex, other.team);
         for(int i = 0; i < weights.length; ++i) {
             this.weights[i] = other.weights[i];
         }
@@ -35,7 +45,7 @@ public class ApproximateQAgent extends Bot implements Serializable {
 
     @Override
     public ApproximateQAgent clone(TETile [][] map) {
-        ApproximateQAgent agent = new ApproximateQAgent(map, this.agentIndex);
+        ApproximateQAgent agent = new ApproximateQAgent(map, this.agentIndex, this.team);
         for (int i = 0; i < agent.weights.length; ++i) {
             agent.weights[i] = this.weights[i];
         }
@@ -63,15 +73,13 @@ public class ApproximateQAgent extends Bot implements Serializable {
             delay = 20;
             char action = getAction(state);
             return action;
-        }
-        else {
+        } else {
             --delay;
             return '!';
         }
     }
 
     private char getAction(GameState state) {
-        // May handle exploration over here !
         if(isAlive == 0) {
             return '!';
         }
@@ -82,8 +90,6 @@ public class ApproximateQAgent extends Bot implements Serializable {
             action = legalActions[r.nextInt(legalActions.length)];
         } else {
             action = getPolicy(state);
-//            System.out.println("Agent " + agentIndex + " took learned action at " + actionNum);
-//            System.out.println("Action: " + action + "\n");
         }
         ++actionNum;
         return action;
@@ -145,11 +151,21 @@ public class ApproximateQAgent extends Bot implements Serializable {
     public void setReward(int reward) {
         this.reward = reward;
     }
+
+    public double getReward() {
+        return reward;
+    }
+
+    public double[] getWeights() {
+        double[] temp = new double[weights.length];
+        System.arraycopy(weights, 0, temp, 0, weights.length);
+        return temp;
+    }
+
     /****************************************************************************************
     This function is called by Environment to inform that the agent has observed a transition
      ****************************************************************************************/
     public void observeTransition(GameState lastState, char lastAction, GameState thisState, double deltaReward) {
-//        System.out.println("Observed a transition");
         this.reward += deltaReward;
         update(lastState, lastAction, thisState, deltaReward);
     }

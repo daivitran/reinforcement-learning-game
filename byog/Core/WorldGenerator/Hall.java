@@ -1,6 +1,6 @@
 package byog.Core.WorldGenerator;
 
-/*
+/**
  * Our grid system
  *             (y) Height --------------------->
  *  (x) Width   -----------------------------
@@ -17,6 +17,7 @@ package byog.Core.WorldGenerator;
  *
  */
 public class Hall extends Block {
+
     private boolean isVertical;
 
     public Hall() {

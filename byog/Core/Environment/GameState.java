@@ -1,6 +1,7 @@
 package byog.Core.Environment;
 
 import byog.Core.Agents.Agent;
+import byog.Core.Agents.ApproximateQAgent;
 import byog.Core.WorldGenerator.Position;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
@@ -11,6 +12,7 @@ import static byog.TileEngine.TETile.copyOf;
 import byog.Core.Interactivity.Gun.Bullet;
 
 public class GameState implements Serializable {
+
     private Agent[] agents;
     private TETile [][] map;
     private static int BULLETDELAY = 8;
@@ -127,11 +129,25 @@ public class GameState implements Serializable {
         return count;
     }
 
+    public int getNumOfEnemies(int agentIndex) {
+        int count = 0;
+        for (int i = 0; i < agents.length; ++i) {
+            if (agents[i] == null) {
+                continue;
+            }
+            if (agents[i].team() != agents[agentIndex].team()) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
     public Agent getNearestAgent(int agentIndex) {
         Agent result = null;
         double minDistance = Double.MAX_VALUE;
         for(int i = 0; i < agents.length; ++i) {
-            if(agents[i] == null || i == agentIndex || agents[i].checkAlive() == 0) { continue; }
+            // if(agents[i] == null || i == agentIndex || agents[i].checkAlive() == 0) { continue; }
+            if (agents[i] == null || i == agentIndex || agents[i].checkAlive() == 0 || agents[i].team() == agents[agentIndex].team()) { continue; }
             double distance = agents[agentIndex].getPos().distanceSquaredTo(agents[i].getPos());
             if(distance < minDistance) {
                 minDistance = distance;
@@ -145,7 +161,7 @@ public class GameState implements Serializable {
     public int getTotalOtherHealth(int agentIndex) {
         int total = 0;
         for (int i = 0; i < agents.length; ++i) {
-            if (agentIndex == i || agents[i] == null || agents[i].checkAlive() == 0) {
+            if (agentIndex == i || agents[i] == null || agents[i].checkAlive() == 0 || agents[i].team() == agents[agentIndex].team()) {
                 continue;
             }
             total += agents[i].getHealth();
@@ -168,8 +184,7 @@ public class GameState implements Serializable {
                 if(agents[i] == null) { continue; }
                 agents[i].updateBullets();
             }
-        }
-        else {
+        } else {
             --BULLETDELAY;
         }
     }
@@ -183,7 +198,7 @@ public class GameState implements Serializable {
         Position agentPos = getPosition(agentIndex);
         Position [] bulletsPos = getBulletPosition(agentIndex);
         for(int i = 0; i < agents.length; ++i) {
-            if(i == agentIndex || agents[i] == null) { continue; }
+            if (i == agentIndex || agents[i] == null || agents[agentIndex].team() == agents[i].team()) { continue;}
             for(int j = 0; j < bulletsPos.length; ++j) {
                 if(bulletsPos[j] == null) { continue; }
                 if(agents[i].getPos().equals(bulletsPos[j])) {
@@ -239,9 +254,6 @@ public class GameState implements Serializable {
         return result;
     }
 
-
-
-
      public boolean isBulletComingToBot(int agentIndex) {
          Bullet[] bullets = getOtherBullets(agentIndex);
          for (Bullet bullet : bullets) {
@@ -263,6 +275,9 @@ public class GameState implements Serializable {
                          }
                          ++bY;
                          ++i;
+                         if (bY >= 30) {
+                             break;
+                         }
                      }
                      break;
                  case 1 :
@@ -272,6 +287,9 @@ public class GameState implements Serializable {
                          }
                          ++bX;
                          ++i;
+                         if (bX >= 80) {
+                             break;
+                         }
                      }
                      break;
                  case 2 :
@@ -281,6 +299,9 @@ public class GameState implements Serializable {
                          }
                          --bY;
                          ++i;
+                         if (bY < 0) {
+                             break;
+                         }
                      }
                      break;
                  case 3 :
@@ -290,6 +311,9 @@ public class GameState implements Serializable {
                          }
                          --bX;
                          ++i;
+                         if (bX < 0) {
+                             break;
+                         }
                      }
                      break;
              }
