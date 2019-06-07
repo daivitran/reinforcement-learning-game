@@ -95,6 +95,10 @@ public class Game {
                     this.agents[i].initialPosition();
                 }
 
+                for (int i = 1; i < this.agents.length; ++i) {
+                    ((ApproximateQAgent) this.agents[i]).interact();
+                }
+
                 GameState state = new GameState(map, this.agents);
 
                 Controller c = new Controller(hud, state);
