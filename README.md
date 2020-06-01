@@ -22,7 +22,7 @@ This project is inspired from UC Berkeley's CS 61B second project. In this proje
     * Press 'K' to shoot
     * Enter ":" and immediately follow by "q" to save and quit the game
     
-## A few features that I added to the AI bot (reinforcement learning) to reduce underfitting (trial and error method...)
+## Features that I added to the AI bot to reduce underfitting (trial and error method...)
    * Its current health (from 0 to 5)
    * Negative of its current health times 10 (Not sure why I did this lol)
    * Its current position
@@ -31,6 +31,9 @@ This project is inspired from UC Berkeley's CS 61B second project. In this proje
    * Distance to the nearest bullet
    * Are there any bullets coming to the bot ?
    * For the reward function: I used a very simple one. I rewarded the bot every time it fires a bullet hitting the player.
+
+## Training
+   * I let the bots play against each other in about 100 matches, and they became unbeatable.
 
 ## Resources
    * Reinforcement Learning: https://inst.eecs.berkeley.edu/~cs188/sp20/assets/notes/n5.pdf
