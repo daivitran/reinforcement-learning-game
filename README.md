@@ -7,9 +7,9 @@ This project is inspired from UC Berkeley's CS 61B second project. In this proje
 ## Dependency
   * Java 11
   
-## Instruction 
+## How to open the game
   * Pull or Fork this repo in your local machine
-  * In the repo that you just downloaded, open the terminal or command line and run ```java -jar shootingAI.jar```
+  * In the repo that you just downloaded, open the terminal or command line and run ```java -jar exe.jar```
   
 ## How to play the game
   * The purpose is to kill all AI agents
@@ -22,7 +22,7 @@ This project is inspired from UC Berkeley's CS 61B second project. In this proje
     * Press 'K' to shoot
     * Enter ":" and immediately follow by "q" to save and quit the game
     
-## Features that I added to the AI bot to reduce underfitting (trial and error method...)
+## Features that I added to the AI bot to reduce underfitting
    * Its current health (from 0 to 5)
    * Negative of its current health times 10 (Not sure why I did this lol)
    * Its current position
@@ -32,8 +32,8 @@ This project is inspired from UC Berkeley's CS 61B second project. In this proje
    * Are there any bullets coming to the bot ?
    * For the reward function: I used a very simple one. I rewarded the bot every time it fires a bullet hitting the player.
 
-## Training
-   * I let the bots play against each other in about 100 matches, and they became unbeatable.
+## How I trained the AI bots
+   * I simply let the bots play against each other in about 100 matches, and they became unbeatable.
 
 ## Resources
    * Reinforcement Learning: https://inst.eecs.berkeley.edu/~cs188/sp20/assets/notes/n5.pdf
