@@ -1,6 +1,9 @@
 # shootingAI
 This project is inspired from UC Berkeley's CS 61B second project. In this project, my friend (https://github.com/phuocdo1998) and I built from scratch a world generator, player agent and AI agent with reinforcement learning algorithm.
 
+### Demo
+![](game.gif)
+
 ### Dependency
   * Java 11
   
