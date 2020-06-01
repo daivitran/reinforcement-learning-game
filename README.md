@@ -6,6 +6,7 @@ This project is inspired from UC Berkeley's CS 61B second project. In this proje
 
 ## Dependency
   * Java 11
+  * Princeton StdDraw which is already included in this repo (javalib)
   
 ## How to open the game
   * Pull or Fork this repo in your local machine
